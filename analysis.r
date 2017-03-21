@@ -14,4 +14,14 @@ setwd('~/Desktop/Extinction-Risk')
 
 ### Reading in raw data files
 
-NAFrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
+frogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
+
+# example data visualizations
+boxplot(frogs$MeanClutchSize)
+boxplot(frogs$MeanClutchSize ~ frogs$IUCN_Threat_Status)
+
+# paired tests: e.g., Wilcoxon rank sum test (wilcox.test)
+
+# need to rearrange data for paired comparison where you 
+
+  
