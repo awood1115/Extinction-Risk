@@ -14,4 +14,4 @@ setwd('~/Desktop/Extinction-Risk')
 
 ### Reading in raw data files
 
-#NAFrogs = read.csv("NorthAmericanFrogs.csv", row.names = NULL )
+NAFrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
