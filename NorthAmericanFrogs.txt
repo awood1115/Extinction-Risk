@@ -16,29 +16,29 @@ Anaxyrus cognatus	Great Plains Toad	LC	0	1342	45054	11074	NA	NA	NA	49	115	NA	47	
 Anaxyrus debilis	American Green Toad	LC	0	NA	NA	1287	NA	NA	NA	44	54	NA	37	46	NA	1	0	0	0	0	0	0	1	0	1	0	0	1	0	0	0	0	0	1524	NA	NA
 Anaxyrus fowleri	Fowler's Toad	LC	0	2000	10000	5221	51	85	NA	NA	NA	65.5	NA	NA	59.6	1	0	0	0	0	1	0	0	0	1	0	0	0	1	1	0	0	0	1200	NA	NA
 Anaxyrus punctatus	Red-spotted Toad	LC	0	NA	NA	1500	NA	NA	NA	52	66	NA	47	63	NA	NA	NA	NA	NA	NA	0	0	1	1	1	0	0	1	0	0	0	0	0	2000	NA	NA
-Anaxyrus retiformis	Sonoran Green Toad	LC	0	50	200		28	57		45	57	NA	39	47	NA	NA	NA	NA	NA	NA	0	0	1	0	1	0	0	1	1	1	0	0	150	1500	NA	"clutch size unknown in wild, values from artificially extracted by hormone injection and stripping"
+Anaxyrus retiformis	Sonoran Green Toad	LC	0	50	200		28	57		45	57	NA	39	47	NA	NA	NA	NA	NA	NA	0	0	1	0	1	0	0	1	1	1	0	0	150	1500	NA	"clutch size unknown in wild, values obtained from artificially extracting eggs from females by hormone injection and stripping"
 Anaxyrus speciosus	Texas Toad	LC	0	NA	NA	NA	NA	NA	NA	54	91	NA	52	78	NA	1	0	0	0	0	0	0	0	1	1	0	0	0	1	1	0	0	NA	NA	NA	NA
 Anaxyrus woodhousii	Woodhouse's Toad	LC	0	NA	28000	NA	NA	NA	NA	79	110	NA	69	104	NA	NA	NA	NA	NA	NA	0	0	1	1	1	0	0	1	1	1	0	0	0	2500	NA	NA
 Anaxyrus baxteri	Wyoming Toad	EW	1	1000	6000	NA	NA	NA	NA	NA	NA	52	NA	NA	48	1	0	0	0	0	0	0	0	1	1	0	0	0	0	0	0	0	305	2134	Anaxyrus americanus	NA
-Hyla andersonii	Pine Barrens Treefrog	TH	1	800	1000	NA	NA	NA	38	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	"Hyla femoralis, versicolor, chrysoscelis"	NA
+Hyla andersonii	Pine Barrens Treefrog	TH	1	800	1000	NA	NA	NA	38	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	"Hyla femoralis, Hyla versicolor, Hyla chrysoscelis"	NA
 Hyla femoralis	Pine Woods Treefrog	LC	0	800	2000	NA	NA	NA	40	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	NA	NA	NA	NA
 Rana draytonii	California Red-legged Frog	VU	1	300	4000	2000	NA	NA	NA	NA	NA	138	NA	NA	116	1	1	1	0	0	0	0	0	0	1	0	0	0	0	1	0	0	0	1525	unknown	NA
 Rana boylii	Yellow-legged Frog	NT	1	300	2000	900	NA	NA	NA	NA	NA	NA	NA	NA	NA	1	1	0	0	0	1	0	1	0	1	0	0	0	0	0	0	0	0	1940	Rana aurora	NA
 Rana cascadae	Cascades Frog	NT	1	300	800	NA	NA	NA	NA	50	75		50	60	NA	1	0	1	0	0	1	0	0	1	1	0	0	0	0	0	0	0	400	2740	Rana aurora	NA
 Rana muscosa	Southern Mountain Yellow-legged Frog	EN	1	100	350	233	NA	NA	NA	45	50	NA	NA	NA	NA	1	0	1	0	0	1	0	0	1	1	0	0	0	0	0	0	0	1220	2290	Rana aurora	NA
 Rana sierrae	Sierra Nevada Yellow-legged Frog	EN	1	100	350	233	NA	NA	NA	45	50	NA	NA	NA	NA	1	0	1	0	0	1	0	0	1	1	0	0	0	0	0	0	0	1220	2290	unknown	all data is the same as Rana muscosa because the species were only recently separated
-Rana pretiosa	Oregon Spotted Frog	VU	1	NA	NA	621	NA	NA	NA	60	100	NA	45	75	NA	1	0	1	0	0	1	0	1	1	1	0	0	0	0	1	0	0	0	1661	Rana luteiventris	mean clutch size is average of 2 references
+Rana pretiosa	Oregon Spotted Frog	VU	1	NA	NA	621	NA	NA	NA	60	100	NA	45	75	NA	1	0	1	0	0	1	0	1	1	1	0	0	0	0	1	0	0	0	1661	Rana luteiventris	mean clutch size is the average of 2 references
 Rana luteiventris	Columbia Spotted Frog	LC	0	150	2400	600	NA	NA	NA	NA	100	NA	35	75	NA	1	1	1	0	0	1	0	1	1	1	0	0	0	0	0	0	0	0	3040	NA	NA
-Rana capito	Carolina Gopher Frog	NT	1	NA	NA	1728	64	89	NA	75	76	NA	NA	NA	NA	1	0	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	Rana palustris	mean clutch size average of 4 references
-Rana areolata	Crawfish Frog	NT	1	2000	7000	NA	NA	NA	84.9	NA	NA	89.6	NA	NA	82.8	1	0	0	0	0	1	0	0	1	1	0	0	0	1	1	0	0	NA	NA	Rana palustris	"had multiple references of SVL ranges, but also means for each, so averaged the means"
-Rana sevosa	Dusky Gopher Frog	CR	1	500	7000	NA	NA	NA	NA	64.6	105	82	51.4	84.6	71.4	1	0	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	"Rana clamitans, heckscheri, virgatipes, grylio, catesbeiana"	"had min and maxes but also means (averaged means from 5 studies, and included overall min and max)"
-Rana chiricahuensis 	Chiricahua Leopard Frog	VU	1	300	1485	NA	57	95	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1	0	0	0	1	0	0	0	0	1	0	0	1000	2710	Rana pipiens	"nearest non-endangered species is actually Rana montezumae but amphibiaweb didn't have data, Rana pipiens is the next closest"
+Rana capito	Carolina Gopher Frog	NT	1	NA	NA	1728	64	89	NA	75	76	NA	NA	NA	NA	1	0	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	Rana palustris	mean clutch size is the average of 4 references
+Rana areolata	Crawfish Frog	NT	1	2000	7000	NA	NA	NA	84.9	NA	NA	89.6	NA	NA	82.8	1	0	0	0	0	1	0	0	1	1	0	0	0	1	1	0	0	NA	NA	Rana palustris	"AmphibiaWeb had multiple references of SVL ranges, but also means for each, so averaged the means"
+Rana sevosa	Dusky Gopher Frog	CR	1	500	7000	NA	NA	NA	NA	64.6	105	82	51.4	84.6	71.4	1	0	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	"Rana clamitans, Rana heckscheri, Rana virgatipes, Rana grylio, Rana catesbeiana"	"had min and maxes but also means, so I averaged the means from all 5 studies, and included overall min and max values as well"
+Rana chiricahuensis 	Chiricahua Leopard Frog	VU	1	300	1485	NA	57	95	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1	0	0	0	1	0	0	0	0	1	0	0	1000	2710	Rana pipiens	"nearest non-endangered species is actually Rana montezumae but AmphibiaWeb didn't have data for that species, Rana pipiens is the next closest species"
 Rana okaloosae	Florida Bog Frog	VU	1	NA	NA	NA	NA	NA	NA	38.2	49.8	NA	34.8	45.8	NA	NA	NA	NA	NA	NA	1	0	0	0	1	0	0	0	0	0	0	0			Rana clamitans 	NA
 Rana onca	Relict Leopard Frog	EN	1	NA	NA	NA	44	87	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	0	0	0	1	0	0	0	0	0	0	0	370	760	Rana yavapaiensis	NA
 Rana yavapaiensis	Lowland Leopard Frog	LC	0	NA	NA	NA	NA	NA	NA	46	72	NA	53	87	NA	1	0	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	1817	NA	NA
 Rana tarahumarae	Tarahumara Frog	EN	1	527	1635	1083	NA	NA	NA	67	NA	NA	64	NA	NA	1	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	457	1829	unknown	NA
 Rana aurora	Northern Red-legged Frog	LC	0	200	1100	NA	44	84	NA	NA	NA	NA	NA	NA	NA	1	1	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	1200	NA	NA
-Rana palustris	Pickerel Frog	LC	0	2000	3000	NA	NA	NA	NA	54	78	64	43	56.5	52	1	0	0	0	0	1	0	0	1	1	0	1	0	0	1	0	0	NA	NA	NA	amphibiaweb had SVL min and max ranges and averages so both are included
+Rana palustris	Pickerel Frog	LC	0	2000	3000	NA	NA	NA	NA	54	78	64	43	56.5	52	1	0	0	0	0	1	0	0	1	1	0	1	0	0	1	0	0	NA	NA	NA	AmphibiaWeb had SVL min and max ranges and averages so both are included
 Rana heckscheri	River Frog	LC	0	6000	8000	NA	NA	NA	NA	102	155	NA	82	131	NA	1	0	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	NA	NA
 Rana pipiens	Northern Leopard Frog	LC	0	645	7648	NA	50	110	NA	NA	NA	NA	NA	NA	NA	1	1	1	0	0	1	0	0	1	1	0	0	0	1	1	0	0	0	3353	NA	NA
 Rana clamitans	Green Frog	LC	0	1000	7000	NA	NA	NA	NA	87	105	NA	86	103	NA	1	1	1	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	1950	NA	NA
@@ -53,14 +53,14 @@ Rana catesbeiana	American Bullfrog	LC	0	4928	59035	11149	NA	NA	NA	120	183	162	11
 Spea intermontana	Great Basin Spadefoot	LC	0	300	800	NA	37	62	NA	45	66	NA	40	66	NA	1	0	0	0	0	1	0	1	1	1	0	0	1	0	0	0	0	0	2800	NA	NA
 Hyla gratiosa	Barking Treefrog	LC	0	1500	4000	NA	NA	NA	NA	50	70	NA	49	70	NA	1	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	NA	NA	NA	NA
 Craugastor augusti	Barking Frog	LC	0	50	76		47	94	NA	NA	NA	NA	NA	NA	NA	1	1	1	0	0	1	0	1	0	0	0	0	1	0	0	0	0	900	1890	NA	only eaten frogs in captivity
-Gastrophryne carolinensis	Eastern Narrow-mouthed Toad	LC	0	152	1459	973	20	36	NA	21	36.5	NA	18.8	34	NA	1	1	0	0	0	1	0	1	0	1	0	0	0	1	1	0	0	0	1500	NA	average of 4 references
+Gastrophryne carolinensis	Eastern Narrow-mouthed Toad	LC	0	152	1459	973	20	36	NA	21	36.5	NA	18.8	34	NA	1	1	0	0	0	1	0	1	0	1	0	0	0	1	1	0	0	0	1500	NA	min and max SVL values are the average of 4 references
 Leptodactylus fragilis	Mexican White-lipped Frog	LC	0	25	250	NA	NA	NA	NA	NA	36	NA	NA	40	NA	NA	NA	NA	NA	NA	1	1	1	1	1	0	0	0	1	1	0	0	0	1530	NA	NA
 Incilius alvarius	Sonoran Desert Toad	LC	0	7500	8000	NA	NA	NA	NA	87	178	NA	80	156	NA	1	1	1	0	0	0	0	1	1	1	0	0	0	0	1	0	0	0	1600	NA	NA
-Scaphiopus holbrookii	Eastern Spadefoot	LC	0	3078	5468	3872	44	72	NA	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	0	1	1	1	0	0	0	0	0	0	0	NA	NA	NA	min and max SVL from different references
+Scaphiopus holbrookii	Eastern Spadefoot	LC	0	3078	5468	3872	44	72	NA	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	0	1	1	1	0	0	0	0	0	0	0	NA	NA	NA	min and max SVL are from different references
 Eleutherodactylus marnockii	Cliff Chirping Frog	LC	0	8	20	NA	NA	NA	NA	19	35.4	NA	18	28.9	NA	1	0	0	0	0	0	0	1	1	0	1	1	0	1	0	0	0	1000	2000	NA	clutch size in captivity
 Acris gryllus	Southern Cricket Frog	LC	0	NA	250	NA	NA	NA	NA	16	33	NA	15	29	NA	1	0	0	0	0	1	0	1	0	1	0	0	0	0	1	0	0	NA	NA	NA	NA
 Pseudacris nigrita	Southern Chorus Frog	LC	0	78	157	NA	25	33	NA	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	0	0	1	1	0	0	0	0	1	0	0	Na	NA	NA	NA
 Rhinophrynus dorsalis	Mexican Burrowing Toad	LC	0	NA	NA	NA	60	88	NA	NA	NA	NA	NA	NA	NA	1	0	0	0	0	1	1	1	1	1	0	0	0	1	1	0	0	0	600	NA	NA
 Smilisca baudinii	Mexican Treefrog	LC	0	480	3320	NA	NA	NA	NA	NA	90	NA	51	76	NA	1	0	0	0	0	1	1	1	0	1	0	0	0	1	1	0	0	0	1610	NA	NA
-Rhinella marina	Cane Toad	LC	0	4240	36100	NA	66	150	NA	NA	NA	NA	NA	NA	NA	1	1	0	0	0	1	1	1	1	1	0	0	0	1	1	1	1	0	3000	NA	"marine habitat includes intertidal and coastal/supratidal, and other is introduced vegetation"
+Rhinella marina	Cane Toad	LC	0	4240	36100	NA	66	150	NA	NA	NA	NA	NA	NA	NA	1	1	0	0	0	1	1	1	1	1	0	0	0	1	1	1	1	0	3000	NA	"marine habitat includes intertidal and coastal_supratidal, and other is introduced vegetation"
 Hypopachus variolosus	Sheep Frog	LC	0	NA	NA	700	NA	NA	NA	29	41	NA	25	37.5	NA	1	0	0	0	0	1	0	1	1	1	0	0	0	1	1	0	0	0	2100	NA	NA
