@@ -14,7 +14,8 @@ setwd('~/Desktop/Extinction-Risk')
 
 ### Reading in raw data files
 
-frogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
+NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
+EuroAmphib = read.table("EuropeanAmphibians.txt", header=T, sep = '\t', quote = "\"", na.strings = "DD")
 
 # example data visualizations
 boxplot(frogs$MeanClutchSize)
