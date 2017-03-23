@@ -17,9 +17,48 @@ setwd('~/Desktop/Extinction-Risk')
 NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
 EuroAmphib = read.table("EuropeanAmphibians.txt", header=T, sep = '\t', quote = "\"", na.strings = "DD")
 
+# Creating threat binary column in the European Dataset
+EuroAmphib$ThreatBinary <- NA
+EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_Vulnerable == 1 | EuroAmphib$IUCN_Status_Endangered == 1 | EuroAmphib$IUCN_Status_NearThreatened == 1 | EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 1
+EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 0
+
 # example data visualizations
-boxplot(frogs$MeanClutchSize)
-boxplot(frogs$MeanClutchSize ~ frogs$IUCN_Threat_Status)
+boxplot(NAfrogs$MeanClutchSize ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MaxClutchSize ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MinClutchSize ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MeanSVL_Unspecified_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MeanSVL_Female_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MeanSVL_Male_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MaxSVL_Male_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MaxSVL_Female_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MaxSVL_Unspecified_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MinSVL_Unspecified_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MinSVL_Female_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MinSVL_Male_mm ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$Insectivorous ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$Cannibalism ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$Moluscivorous ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$forest ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$savanna ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$shrubland ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$rocky_areas ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$artificial_terrestrial ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$artificial_aquatic_._marine ~ NAfrogs$ThreatBinary)
+
+boxplot(EuroAmphib$SVL_Unspecified_mm ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$SVL_Female_mm ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$SVL_Male_mm ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$BodyMass_Unspecified_g ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$Number_of_eggs_or_offspring ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$JuvenileDiet_Carnivorous ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$AdultDiet_Carnivorous ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$AdultDiet_Insectivorous ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$AdultDIet_Moluscivorous ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$AdultDiet_Cannibalism ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$AdultDiet_Herbivorous ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$Altitude_min ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$Altitude_max ~ EuroAmphib$ThreatBinary)
+
 
 # paired tests: e.g., Wilcoxon rank sum test (wilcox.test)
 
