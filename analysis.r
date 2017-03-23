@@ -1,12 +1,8 @@
 # ENEC 395 Undergraduate Research 
 # Alicia Wood
 # 3/20/17
-# Title
+# Correlates of Extinction Risk in European and North American Amphibians
 
-### Loading in necessary libraries
-
-#library(dplyr)
-#library(tools)
 
 ### Setting my working directory to the folder where all of my data and code are stored
 
@@ -38,20 +34,14 @@ boxplot(NAfrogs$MinSVL_Male_mm ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$Insectivorous ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$Cannibalism ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$Moluscivorous ~ NAfrogs$ThreatBinary)
-boxplot(NAfrogs$forest ~ NAfrogs$ThreatBinary)
-boxplot(NAfrogs$savanna ~ NAfrogs$ThreatBinary)
-boxplot(NAfrogs$shrubland ~ NAfrogs$ThreatBinary)
-boxplot(NAfrogs$rocky_areas ~ NAfrogs$ThreatBinary)
-boxplot(NAfrogs$artificial_terrestrial ~ NAfrogs$ThreatBinary)
-boxplot(NAfrogs$artificial_aquatic_._marine ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MaxElevation_m ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$MinElevation_m ~ NAfrogs$ThreatBinary)
+
 
 boxplot(EuroAmphib$SVL_Unspecified_mm ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$SVL_Female_mm ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$SVL_Male_mm ~ EuroAmphib$ThreatBinary)
-boxplot(EuroAmphib$BodyMass_Unspecified_g ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$Number_of_eggs_or_offspring ~ EuroAmphib$ThreatBinary)
-boxplot(EuroAmphib$JuvenileDiet_Carnivorous ~ EuroAmphib$ThreatBinary)
-boxplot(EuroAmphib$AdultDiet_Carnivorous ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$AdultDiet_Insectivorous ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$AdultDIet_Moluscivorous ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$AdultDiet_Cannibalism ~ EuroAmphib$ThreatBinary)
