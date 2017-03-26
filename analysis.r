@@ -18,6 +18,8 @@ EuroAmphib$ThreatBinary <- NA
 EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_Vulnerable == 1 | EuroAmphib$IUCN_Status_Endangered == 1 | EuroAmphib$IUCN_Status_NearThreatened == 1 | EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 1
 EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 0
 
+NAfrogs$HabitatBreadth <- NA
+
 # example data visualizations
 boxplot(NAfrogs$MeanClutchSize ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$MaxClutchSize ~ NAfrogs$ThreatBinary)
