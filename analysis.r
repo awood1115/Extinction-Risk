@@ -18,7 +18,35 @@ EuroAmphib$ThreatBinary <- NA
 EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_Vulnerable == 1 | EuroAmphib$IUCN_Status_Endangered == 1 | EuroAmphib$IUCN_Status_NearThreatened == 1 | EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 1
 EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 0
 
-NAfrogs$HabitatBreadth <- NA
+#Creating Habitat Breadth columns in both datasets
+EuroAmphib$Habitat_Forest <- apply(EuroAmphib[,c(123:131)], 1, sum)
+EuroAmphib$Habitat_Forest[EuroAmphib$Habitat_Forest > 0] <- 1
+EuroAmphib$Habitat_Savanna <- apply(EuroAmphib[,c(132:133)], 1, sum)
+EuroAmphib$Habitat_Savanna[EuroAmphib$Habitat_Savanna > 0] <- 1
+EuroAmphib$Habitat_Shrubland <- apply(EuroAmphib[,c(134:141)], 1, sum)
+EuroAmphib$Habitat_Shrubland[EuroAmphib$Habitat_Shrubland > 0] <- 1
+EuroAmphib$Habitat_Grassland <- apply(EuroAmphib[,c(142:148)], 1, sum)
+EuroAmphib$Habitat_Grassland[EuroAmphib$Habitat_Grassland > 0] <- 1
+EuroAmphib$Habitat_Wetlands <- apply(EuroAmphib[,c(149:164)], 1, sum)
+EuroAmphib$Habitat_Wetlands[EuroAmphib$Habitat_Wetlands > 0] <- 1
+EuroAmphib$Habitat_RockyAreas[EuroAmphib$Habitat_RockyAreas_inland_cliffs_moutain_peaks == 1] <- 1
+EuroAmphib$Habitat_RockyAreas[EuroAmphib$Habitat_RockyAreas_inland_cliffs_moutain_peaks == 0] <- 0
+EuroAmphib$Habitat_Caves <- apply(EuroAmphib[,c(166:167)], 1, sum)
+EuroAmphib$Habitat_Caves[EuroAmphib$Habitat_Caves > 0] <- 1
+EuroAmphib$Habitat_Deserts <- apply(EuroAmphib[,c(168:170)], 1, sum)
+EuroAmphib$Habitat_Deserts[EuroAmphib$Habitat_Deserts > 0] <- 1
+EuroAmphib$Habitat_ArtificialTerrestrial <- apply(EuroAmphib[,c(171:176)], 1, sum)
+EuroAmphib$Habitat_ArtificialTerrestrial[EuroAmphib$Habitat_ArtificialTerrestrial > 0] <- 1
+EuroAmphib$Habitat_Other[EuroAmphib$Habitat_Other_dunes == 1] <- 1
+EuroAmphib$Habitat_Other[EuroAmphib$Habitat_Other_dunes == 0] <- 0
+
+EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(256,265)], 1, sum)
+NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
+
+str(EuroAmphib$HabitatBreadth)
+str(NAfrogs$HabitatBreadth)
+
+
 
 # example data visualizations
 boxplot(NAfrogs$MeanClutchSize ~ NAfrogs$ThreatBinary)
