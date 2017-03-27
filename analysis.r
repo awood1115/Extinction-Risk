@@ -12,6 +12,7 @@ setwd('~/Desktop/Extinction-Risk')
 
 NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
 EuroAmphib = read.table("EuropeanAmphibians.txt", header=T, sep = '\t', quote = "\"", na.strings = "DD")
+Taxonomy = read.table("Taxonomy.txt", header=T, sep = '\t', quote = "\"")
 
 # Creating threat binary column in the European Dataset
 EuroAmphib$ThreatBinary <- NA
@@ -46,7 +47,9 @@ NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 str(EuroAmphib$HabitatBreadth)
 str(NAfrogs$HabitatBreadth)
 
-
+# Joining in taxon info
+NAfrogs <- merge(NAfrogs, Taxonomy, by = "SpeciesName")
+EuroAmphib <- merge(EuroAmphib, Taxonomy, by = "SpeciesName")
 
 # example data visualizations
 boxplot(NAfrogs$MeanClutchSize ~ NAfrogs$ThreatBinary)
