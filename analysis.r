@@ -69,6 +69,8 @@ boxplot(NAfrogs$Cannibalism ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$Moluscivorous ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$MaxElevation_m ~ NAfrogs$ThreatBinary)
 boxplot(NAfrogs$MinElevation_m ~ NAfrogs$ThreatBinary)
+boxplot(NAfrogs$HabitatBreadth ~ NAfrogs$ThreatBinary)
+
 
 
 boxplot(EuroAmphib$SVL_Unspecified_mm ~ EuroAmphib$ThreatBinary)
@@ -81,6 +83,7 @@ boxplot(EuroAmphib$AdultDiet_Cannibalism ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$AdultDiet_Herbivorous ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$Altitude_min ~ EuroAmphib$ThreatBinary)
 boxplot(EuroAmphib$Altitude_max ~ EuroAmphib$ThreatBinary)
+boxplot(EuroAmphib$HabitatBreadth ~ EuroAmphib$ThreatBinary)
 
 
 # paired tests: e.g., Wilcoxon rank sum test (wilcox.test)
