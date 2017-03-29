@@ -8,6 +8,9 @@
 
 setwd('~/Desktop/Extinction-Risk')
 
+library(dplyr)
+
+
 ### Reading in raw data files
 
 NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
@@ -47,9 +50,32 @@ NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 str(EuroAmphib$HabitatBreadth)
 str(NAfrogs$HabitatBreadth)
 
+# Threat status ordinal values
+threat = data.frame(IUCN_Threat_Status = c('LC', 'VU', 'NT', 'TH', 'EN', 'CR', 'EW'),
+                    threat = 1:7)
 # Joining in taxon info
-NAfrogs <- merge(NAfrogs, Taxonomy, by = "SpeciesName")
+NAfrogs <- merge(NAfrogs, Taxonomy, by = "SpeciesName") %>% left_join(threat)
 EuroAmphib <- merge(EuroAmphib, Taxonomy, by = "SpeciesName")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # example data visualizations
 boxplot(NAfrogs$MeanClutchSize ~ NAfrogs$ThreatBinary)
