@@ -47,8 +47,18 @@ EuroAmphib$Habitat_Other[EuroAmphib$Habitat_Other_dunes == 0] <- 0
 EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(256,265)], 1, sum)
 NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 
-str(EuroAmphib$HabitatBreadth)
-str(NAfrogs$HabitatBreadth)
+#Creating singular clutch size column
+NAfrogs$ClutchSize <- ifelse(is.na(NAfrogs$MeanClutchSize), ifelse(is.na(NAfrogs$MaxClutchSize), ifelse(is.na(NAfrogs$MinClutchSize), NA, NAfrogs$MinClutchSize), ifelse(is.na(NAfrogs$MinClutchSize), NAfrogs$MaxClutchSize, rowMeans(NAfrogs[,c("MinClutchSize", "MaxClutchSize")]))), NAfrogs$MeanClutchSize)
+
+#Creating singularSVLunspecified column
+NAfrogs$SVLunspecified <- ifelse(is.na(NAfrogs$MeanSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MaxSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MinSVL_Unspecified_mm), NA, NAfrogs$MinSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MinSVL_Unspecified_mm), NAfrogs$MaxSVL_Unspecified_mm, rowMeans(NAfrogs[,c("MinSVL_Unspecified_mm", "MaxSVL_Unspecified_mm")]))), NAfrogs$MeanSVL_Unspecified_mm)
+#Creating singular SVLfemale column
+
+#Creating singular SVLmale column
+
+#Creating singular SVL overall column
+NAfrogs$SVLMFmean <- rowMeans(NAfrogs[,c("SVLfemale", "SVLmale")])
+NAfrogs$SVL <- ifelse(!is.na(NAfrogs$SVLunspecified) & !is.na(NAfrogs$SVLfemale) & !is.na(NAfrogs$SVLmale), rowMeans(NAfrogs[,c("SVLunspecified", "SVLMFmean")]), ifelse(is.na(NAfrogs$SVLunspecified), ifelse(is.na(NAfrogs$SVLfemale), ifelse(is.na(NAfrogs$SVLmale), NA, NAfrogs$SVLmale), ifelse(is.na(NAfrogs$SVLmale), NAfrogs$SVLfemale, SVLMFmean)), NAfrogs$SVLunspecified))
 
 # Threat status ordinal values
 threat = data.frame(IUCN_Threat_Status = c('LC', 'VU', 'NT', 'TH', 'EN', 'CR', 'EW'),
