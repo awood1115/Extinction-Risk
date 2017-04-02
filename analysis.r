@@ -53,12 +53,12 @@ NAfrogs$ClutchSize <- ifelse(is.na(NAfrogs$MeanClutchSize), ifelse(is.na(NAfrogs
 #Creating singularSVLunspecified column
 NAfrogs$SVLunspecified <- ifelse(is.na(NAfrogs$MeanSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MaxSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MinSVL_Unspecified_mm), NA, NAfrogs$MinSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MinSVL_Unspecified_mm), NAfrogs$MaxSVL_Unspecified_mm, rowMeans(NAfrogs[,c("MinSVL_Unspecified_mm", "MaxSVL_Unspecified_mm")]))), NAfrogs$MeanSVL_Unspecified_mm)
 #Creating singular SVLfemale column
-
+NAfrogs$SVLfemale <- ifelse(is.na(NAfrogs$MeanSVL_Female_mm), ifelse(is.na(NAfrogs$MaxSVL_Female_mm), ifelse(is.na(NAfrogs$MinSVL_Female_mm), NA, NAfrogs$MinSVL_Female_mm), ifelse(is.na(NAfrogs$MinSVL_Female_mm), NAfrogs$MaxSVL_Female_mm, rowMeans(NAfrogs[,c("MinSVL_Female_mm", "MaxSVL_Female_mm")]))), NAfrogs$MeanSVL_Female_mm)
 #Creating singular SVLmale column
-
+NAfrogs$SVLmale <- ifelse(is.na(NAfrogs$MeanSVL_Male_mm), ifelse(is.na(NAfrogs$MaxSVL_Male_mm), ifelse(is.na(NAfrogs$MinSVL_Male_mm), NA, NAfrogs$MinSVL_Male_mm), ifelse(is.na(NAfrogs$MinSVL_Male_mm), NAfrogs$MaxSVL_Male_mm, rowMeans(NAfrogs[,c("MinSVL_Male_mm", "MaxSVL_Male_mm")]))), NAfrogs$MeanSVL_Male_mm)
 #Creating singular SVL overall column
 NAfrogs$SVLMFmean <- rowMeans(NAfrogs[,c("SVLfemale", "SVLmale")])
-NAfrogs$SVL <- ifelse(!is.na(NAfrogs$SVLunspecified) & !is.na(NAfrogs$SVLfemale) & !is.na(NAfrogs$SVLmale), rowMeans(NAfrogs[,c("SVLunspecified", "SVLMFmean")]), ifelse(is.na(NAfrogs$SVLunspecified), ifelse(is.na(NAfrogs$SVLfemale), ifelse(is.na(NAfrogs$SVLmale), NA, NAfrogs$SVLmale), ifelse(is.na(NAfrogs$SVLmale), NAfrogs$SVLfemale, SVLMFmean)), NAfrogs$SVLunspecified))
+NAfrogs$SVL <- ifelse(!is.na(NAfrogs$SVLunspecified) & !is.na(NAfrogs$SVLfemale) & !is.na(NAfrogs$SVLmale), rowMeans(NAfrogs[,c("SVLunspecified", "SVLMFmean")]), ifelse(is.na(NAfrogs$SVLunspecified), ifelse(is.na(NAfrogs$SVLfemale), ifelse(is.na(NAfrogs$SVLmale), NA, NAfrogs$SVLmale), ifelse(is.na(NAfrogs$SVLmale), NAfrogs$SVLfemale, NAfrogs$SVLMFmean)), NAfrogs$SVLunspecified))
 
 # Threat status ordinal values
 threat = data.frame(IUCN_Threat_Status = c('LC', 'VU', 'NT', 'TH', 'EN', 'CR', 'EW'),
