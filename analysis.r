@@ -67,16 +67,59 @@ threat = data.frame(IUCN_Threat_Status = c('LC', 'VU', 'NT', 'TH', 'EN', 'CR', '
 NAfrogs <- merge(NAfrogs, Taxonomy, by = "SpeciesName") %>% left_join(threat)
 EuroAmphib <- merge(EuroAmphib, Taxonomy, by = "SpeciesName")
 
+##### Plots
 
+### North American Frogs
 
+# Single Trait Linear Models
+plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
+lmsvl = lm(NAfrogs$threat ~ NAfrogs$SVL)
+abline(lmsvl)
+summary(lmsvl)
+plot(NAfrogs$ClutchSize, NAfrogs$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", main = "Threat Status vs. Mean Clutch Size", col = "mediumpurple3", pch = 16)
+lmcs = lm(NAfrogs$threat ~ NAfrogs$ClutchSize)
+abline(lmcs)
+summary(lmcs)
+plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "Threat Status", main = "Threat Status vs. Habitat Breadth", col = "skyblue3", pch = 16)
+lmbh = lm(NAfrogs$threat ~ NAfrogs$HabitatBreadth)
+abline(lmbh)
+summary(lmbh)
+# Multi-Variable Linear Model
+MultiLM = lm(NAfrogs$threat ~ NAfrogs$SVL + NAfrogs$ClutchSize + NAfrogs$HabitatBreadth)
+summary(MultiLM)
 
+### North American Rana
+Rana = NAfrogs[NAfrogs$Genus == 'Rana',]
+plot(Rana$SVL, Rana$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "Rana Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
+lmsvlr = lm(Rana$threat ~ Rana$SVL)
+abline(lmsvlr)
+summary(lmsvlr)
+plot(Rana$ClutchSize, Rana$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", main = "Rana Threat Status vs. Mean Clutch Size", col = "mediumpurple3", pch = 16)
+lmcsr = lm(Rana$threat ~ Rana$ClutchSize)
+abline(lmcsr)
+summary(lmcsr)
+plot(Rana$HabitatBreadth, Rana$threat, xlab = "Habitat Breadth", ylab = "Threat Status", main = "Rana Threat Status vs. Habitat Breadth", col = "skyblue3", pch = 16)
+lmbhr = lm(Rana$threat ~ Rana$HabitatBreadth)
+abline(lmbhr)
+summary(lmbhr)
+MultiLMr = lm(Rana$threat ~ Rana$SVL + Rana$ClutchSize + Rana$HabitatBreadth)
+summary(MultiLMr)
 
-
-
-
-
-
-
+# North American Anaxyrus
+plot(Anaxyrus$SVL, Anaxyrus$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "Anaxyrus Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
+lmsvla = lm(Anaxyrus$threat ~ Anaxyrus$SVL)
+abline(lmsvla)
+summary(lmsvla)
+plot(Anaxyrus$ClutchSize, Anaxyrus$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", main = "Anaxyrus Threat Status vs. Mean Clutch Size", col = "mediumpurple3", pch = 16)
+lmcsa = lm(Anaxyrus$threat ~ Anaxyrus$ClutchSize)
+abline(lmcsa)
+summary(lmcsa)
+plot(Anaxyrus$HabitatBreadth, Anaxyrus$threat, xlab = "Habitat Breadth", ylab = "Threat Status", main = "Anaxyrus Threat Status vs. Habitat Breadth", col = "skyblue3", pch = 16)
+lmbha = lm(Anaxyrus$threat ~ Anaxyrus$HabitatBreadth)
+abline(lmbha)
+summary(lmbha)
+MultiLMa = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize + Anaxyrus$HabitatBreadth)
+summary(MultiLMa)
 
 
 
