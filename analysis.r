@@ -14,6 +14,7 @@ library(dplyr)
 ### Reading in raw data files
 
 NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
+NApaired = read.table("NorthAmericanFrogsPaired.txt", header=T, sep='\t', quote = "\"")
 EuroAmphib = read.table("EuropeanAmphibians.txt", header=T, sep = '\t', quote = "\"", na.strings = "DD")
 Taxonomy = read.table("Taxonomy.txt", header=T, sep = '\t', quote = "\"")
 
@@ -120,6 +121,41 @@ abline(lmbha)
 summary(lmbha)
 MultiLMa = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize + Anaxyrus$HabitatBreadth)
 summary(MultiLMa)
+
+
+
+
+
+#### Paired Analysis
+
+#preparing the paired dataset
+NApaired$HabitatBreadth1 <- apply(NApaired[,c(24:35)], 1, sum)
+NApaired$HabitatBreadth2 <- apply(NApaired[,c(63:74)], 1, sum)
+
+NApaired$ClutchSize1 <- ifelse(is.na(NApaired$MeanClutchSize1), ifelse(is.na(NApaired$MaxClutchSize1), ifelse(is.na(NApaired$MinClutchSize1), NA, NApaired$MinClutchSize1), ifelse(is.na(NApaired$MinClutchSize1), NApaired$MaxClutchSize1, rowMeans(NApaired[,c("MinClutchSize1", "MaxClutchSize1")]))), NApaired$MeanClutchSize1)
+NApaired$ClutchSize2 <- ifelse(is.na(NApaired$MeanClutchSize2), ifelse(is.na(NApaired$MaxClutchSize2), ifelse(is.na(NApaired$MinClutchSize2), NA, NApaired$MinClutchSize2), ifelse(is.na(NApaired$MinClutchSize2), NApaired$MaxClutchSize2, rowMeans(NApaired[,c("MinClutchSize2", "MaxClutchSize2")]))), NApaired$MeanClutchSize2)
+
+NApaired$SVLunspecified1 <- ifelse(is.na(NApaired$MeanSVL_Unspecified_mm1), ifelse(is.na(NApaired$MaxSVL_Unspecified_mm1), ifelse(is.na(NApaired$MinSVL_Unspecified_mm1), NA, NApaired$MinSVL_Unspecified_mm1), ifelse(is.na(NApaired$MinSVL_Unspecified_mm1), NApaired$MaxSVL_Unspecified_mm1, rowMeans(NApaired[,c("MinSVL_Unspecified_mm1", "MaxSVL_Unspecified_mm1")]))), NApaired$MeanSVL_Unspecified_mm1)
+NApaired$SVLfemale1 <- ifelse(is.na(NApaired$MeanSVL_Female_mm1), ifelse(is.na(NApaired$MaxSVL_Female_mm1), ifelse(is.na(NApaired$MinSVL_Female_mm1), NA, NApaired$MinSVL_Female_mm1), ifelse(is.na(NApaired$MinSVL_Female_mm1), NApaired$MaxSVL_Female_mm1, rowMeans(NApaired[,c("MinSVL_Female_mm1", "MaxSVL_Female_mm1")]))), NApaired$MeanSVL_Female_mm1)
+NApaired$SVLmale1 <- ifelse(is.na(NApaired$MeanSVL_Male_mm1), ifelse(is.na(NApaired$MaxSVL_Male_mm1), ifelse(is.na(NApaired$MinSVL_Male_mm1), NA, NApaired$MinSVL_Male_mm1), ifelse(is.na(NApaired$MinSVL_Male_mm1), NApaired$MaxSVL_Male_mm1, rowMeans(NApaired[,c("MinSVL_Male_mm1", "MaxSVL_Male_mm1")]))), NApaired$MeanSVL_Male_mm1)
+NApaired$SVLMFmean1 <- rowMeans(NApaired[,c("SVLfemale1", "SVLmale1")])
+NApaired$SVL1 <- ifelse(!is.na(NApaired$SVLunspecified1) & !is.na(NApaired$SVLfemale1) & !is.na(NApaired$SVLmale1), rowMeans(NApaired[,c("SVLunspecified1", "SVLMFmean1")]), ifelse(is.na(NApaired$SVLunspecified1), ifelse(is.na(NApaired$SVLfemale1), ifelse(is.na(NApaired$SVLmale1), NA, NApaired$SVLmale1), ifelse(is.na(NApaired$SVLmale1), NApaired$SVLfemale1, NApaired$SVLMFmean1)), NApaired$SVLunspecified1))
+NApaired$SVLunspecified2 <- ifelse(is.na(NApaired$MeanSVL_Unspecified_mm2), ifelse(is.na(NApaired$MaxSVL_Unspecified_mm2), ifelse(is.na(NApaired$MinSVL_Unspecified_mm2), NA, NApaired$MinSVL_Unspecified_mm2), ifelse(is.na(NApaired$MinSVL_Unspecified_mm2), NApaired$MaxSVL_Unspecified_mm2, rowMeans(NApaired[,c("MinSVL_Unspecified_mm2", "MaxSVL_Unspecified_mm2")]))), NApaired$MeanSVL_Unspecified_mm2)
+NApaired$SVLfemale2 <- ifelse(is.na(NApaired$MeanSVL_Female_mm2), ifelse(is.na(NApaired$MaxSVL_Female_mm2), ifelse(is.na(NApaired$MinSVL_Female_mm2), NA, NApaired$MinSVL_Female_mm2), ifelse(is.na(NApaired$MinSVL_Female_mm2), NApaired$MaxSVL_Female_mm2, rowMeans(NApaired[,c("MinSVL_Female_mm2", "MaxSVL_Female_mm2")]))), NApaired$MeanSVL_Female_mm2)
+NApaired$SVLmale2 <- ifelse(is.na(NApaired$MeanSVL_Male_mm2), ifelse(is.na(NApaired$MaxSVL_Male_mm2), ifelse(is.na(NApaired$MinSVL_Male_mm2), NA, NApaired$MinSVL_Male_mm2), ifelse(is.na(NApaired$MinSVL_Male_mm2), NApaired$MaxSVL_Male_mm2, rowMeans(NApaired[,c("MinSVL_Male_mm2", "MaxSVL_Male_mm2")]))), NApaired$MeanSVL_Male_mm2)
+NApaired$SVLMFmean2 <- rowMeans(NApaired[,c("SVLfemale2", "SVLmale2")])
+NApaired$SVL2 <- ifelse(!is.na(NApaired$SVLunspecified2) & !is.na(NApaired$SVLfemale2) & !is.na(NApaired$SVLmale2), rowMeans(NApaired[,c("SVLunspecified2", "SVLMFmean2")]), ifelse(is.na(NApaired$SVLunspecified2), ifelse(is.na(NApaired$SVLfemale2), ifelse(is.na(NApaired$SVLmale2), NA, NApaired$SVLmale2), ifelse(is.na(NApaired$SVLmale2), NApaired$SVLfemale2, NApaired$SVLMFmean2)), NApaired$SVLunspecified2))
+
+## Calculating Pair Differences
+NApaired$SVLDiff <- NApaired$SVL2 - NApaired$SVL1
+NApaired$ClutchSizeDiff <- NApaired$ClutchSize2 - NApaired$ClutchSize1
+NApaired$HabitatBreadthDiff <- NApaired$HabitatBreadth2 - NApaired$HabitatBreadth1
+
+## Wilcoxon Tests
+wilcox.test(NApaired$SVLDiff)
+wilcox.test(NApaired$ClutchSizeDiff)
+wilcox.test(NApaired$HabitatBreadthDiff)
+
 
 
 
