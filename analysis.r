@@ -13,21 +13,14 @@ library(dplyr)
 
 ### Reading in raw data files
 
+
 NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
 NApaired = read.table("NorthAmericanFrogsPaired.txt", header=T, sep='\t', quote = "\"")
 EuroAmphib = read.table("EuropeanAmphibians.txt", header=T, sep = '\t', quote = "\"", na.strings = "DD")
 Taxonomy = read.table("Taxonomy.txt", header=T, sep = '\t', quote = "\"")
 
-# Creating threat binary column in the European Dataset
-EuroAmphib$ThreatBinary <- NA
-EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_Vulnerable == 1 | EuroAmphib$IUCN_Status_Endangered == 1 | EuroAmphib$IUCN_Status_NearThreatened == 1 | EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 1
-EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 0
-# Creating Continuous Threat Status Variable
-EuroAmphib$threat[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 1
-EuroAmphib$threat[EuroAmphib$IUCN_Status_Vulnerable == 1] <- 2
-EuroAmphib$threat[EuroAmphib$IUCN_Status_NearThreatened == 1] <- 3
-EuroAmphib$threat[EuroAmphib$IUCN_Status_Endangered == 1] <- 5
-EuroAmphib$threat[EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 6
+
+### Simplifying and preparing data for analysis
 
 
 #Creating Habitat Breadth columns in both datasets
@@ -59,31 +52,53 @@ NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 NAfrogs$ClutchSize <- ifelse(is.na(NAfrogs$MeanClutchSize), ifelse(is.na(NAfrogs$MaxClutchSize), ifelse(is.na(NAfrogs$MinClutchSize), NA, NAfrogs$MinClutchSize), ifelse(is.na(NAfrogs$MinClutchSize), NAfrogs$MaxClutchSize, rowMeans(NAfrogs[,c("MinClutchSize", "MaxClutchSize")]))), NAfrogs$MeanClutchSize)
 #Europe dataset already in 1 column named number_of_eggs_or_offspring
 
-#Condensing mean max and min SVL unspecified into 1 column for NA dataset
+#Simplifying NAfrogs SVL data into 1 Mean SVL column
 NAfrogs$SVLunspecified <- ifelse(is.na(NAfrogs$MeanSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MaxSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MinSVL_Unspecified_mm), NA, NAfrogs$MinSVL_Unspecified_mm), ifelse(is.na(NAfrogs$MinSVL_Unspecified_mm), NAfrogs$MaxSVL_Unspecified_mm, rowMeans(NAfrogs[,c("MinSVL_Unspecified_mm", "MaxSVL_Unspecified_mm")]))), NAfrogs$MeanSVL_Unspecified_mm)
-#Condensing mean max and min SVL female into 1 column
 NAfrogs$SVLfemale <- ifelse(is.na(NAfrogs$MeanSVL_Female_mm), ifelse(is.na(NAfrogs$MaxSVL_Female_mm), ifelse(is.na(NAfrogs$MinSVL_Female_mm), NA, NAfrogs$MinSVL_Female_mm), ifelse(is.na(NAfrogs$MinSVL_Female_mm), NAfrogs$MaxSVL_Female_mm, rowMeans(NAfrogs[,c("MinSVL_Female_mm", "MaxSVL_Female_mm")]))), NAfrogs$MeanSVL_Female_mm)
-#Condensing mean max and min SVL male into 1 column
 NAfrogs$SVLmale <- ifelse(is.na(NAfrogs$MeanSVL_Male_mm), ifelse(is.na(NAfrogs$MaxSVL_Male_mm), ifelse(is.na(NAfrogs$MinSVL_Male_mm), NA, NAfrogs$MinSVL_Male_mm), ifelse(is.na(NAfrogs$MinSVL_Male_mm), NAfrogs$MaxSVL_Male_mm, rowMeans(NAfrogs[,c("MinSVL_Male_mm", "MaxSVL_Male_mm")]))), NAfrogs$MeanSVL_Male_mm)
-#Condensing male female and unspecified SVL into 1 final mean SVL column
 NAfrogs$SVLMFmean <- rowMeans(NAfrogs[,c("SVLfemale", "SVLmale")])
 NAfrogs$SVL <- ifelse(!is.na(NAfrogs$SVLunspecified) & !is.na(NAfrogs$SVLfemale) & !is.na(NAfrogs$SVLmale), rowMeans(NAfrogs[,c("SVLunspecified", "SVLMFmean")]), ifelse(is.na(NAfrogs$SVLunspecified), ifelse(is.na(NAfrogs$SVLfemale), ifelse(is.na(NAfrogs$SVLmale), NA, NAfrogs$SVLmale), ifelse(is.na(NAfrogs$SVLmale), NAfrogs$SVLfemale, NAfrogs$SVLMFmean)), NAfrogs$SVLunspecified))
 #Mean SVL alredy in 1 column in Euro dastaset named SVL_unspecified_mm
 
 
+### Organizing Threat Data
 
-# Threat status ordinal values
+
+# Creating threat binary column in the European Dataset
+EuroAmphib$ThreatBinary <- NA
+EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_Vulnerable == 1 | EuroAmphib$IUCN_Status_Endangered == 1 | EuroAmphib$IUCN_Status_NearThreatened == 1 | EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 1
+EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 0
+# Creating Continuous Threat Status Values in European Dataset
+EuroAmphib$threat[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 1
+EuroAmphib$threat[EuroAmphib$IUCN_Status_Vulnerable == 1] <- 2
+EuroAmphib$threat[EuroAmphib$IUCN_Status_NearThreatened == 1] <- 3
+EuroAmphib$threat[EuroAmphib$IUCN_Status_Endangered == 1] <- 5
+EuroAmphib$threat[EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 6
+# Creating Threat status ordinal values
 threat = data.frame(IUCN_Threat_Status = c('LC', 'VU', 'NT', 'TH', 'EN', 'CR', 'EW'),
                     threat = 1:7)
-# Joining in taxon info
+
+
+### Joining in taxonomy and threat datasets
+
+
 NAfrogs <- merge(NAfrogs, Taxonomy, by = "SpeciesName") %>% left_join(threat)
 EuroAmphib <- merge(EuroAmphib, Taxonomy, by = "SpeciesName")
 
-##### Plots
 
-### North American Frogs
+### Dividing European dataset into Anura and Urodela order datasets
 
-# Single Trait Linear Models
+
+Efrogs <- EuroAmphib[EuroAmphib$Order == 'Anura',]
+Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
+
+
+##### Plots and Linear Models
+
+
+## North American Frogs
+
+# Single Trait Linear Models (All Frogs)
 plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
 lmsvl = lm(NAfrogs$threat ~ NAfrogs$SVL)
 abline(lmsvl)
@@ -96,11 +111,10 @@ plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "T
 lmbh = lm(NAfrogs$threat ~ NAfrogs$HabitatBreadth)
 abline(lmbh)
 summary(lmbh)
-# Multi-Variable Linear Model
+# Multi-Variable Linear Model (All Frogs)
 MultiLM = lm(NAfrogs$threat ~ NAfrogs$SVL + NAfrogs$ClutchSize + NAfrogs$HabitatBreadth)
 summary(MultiLM)
-
-### North American Rana
+# Single and Multiple Linear Models (Rana)
 Rana = NAfrogs[NAfrogs$Genus == 'Rana',]
 plot(Rana$SVL, Rana$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "Rana Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
 lmsvlr = lm(Rana$threat ~ Rana$SVL)
@@ -116,8 +130,7 @@ abline(lmbhr)
 summary(lmbhr)
 MultiLMr = lm(Rana$threat ~ Rana$SVL + Rana$ClutchSize + Rana$HabitatBreadth)
 summary(MultiLMr)
-
-# North American Anaxyrus
+# Single and Multi Linear Models (Anaxyrus)
 plot(Anaxyrus$SVL, Anaxyrus$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "Anaxyrus Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
 lmsvla = lm(Anaxyrus$threat ~ Anaxyrus$SVL)
 abline(lmsvla)
@@ -134,9 +147,20 @@ MultiLMa = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize + Anaxyrus$Ha
 summary(MultiLMa)
 
 
-### Next group by order then plot European frogs and salamanders
-plot(EuroAmphib$SVL_Unspecified_mm, EuroAmphib$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", main = "Threat Status vs Mean SVL", col = "darkgreen", pch = 16)
+## European frogs
 
+plot(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", main = "Threat Status vs Mean SVL", col = "darkgreen", pch = 16)
+lmsvlf = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
+abline(lmsvlf)
+summary(lmsvlf)
+plot(Efrogs$Number_of_eggs_or_offspring, Efrogs$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", main = "Threat Status vs. Mean Clutch Size", col = "mediumpurple3", pch = 16)
+lmcsf = lm(Efrogs$threat ~ Efrogs$Number_of_eggs_or_offspring)
+abline(lmcsf)
+summary(lmcsf)
+plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", ylab = "Threat Status", main = "Threat Status vs. Habitat Breadth", col = "skyblue3", pch = 16)
+lmbhf = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
+abline(lmbhf)
+summary(lmbhf)
 
 #### Paired Analysis
 
