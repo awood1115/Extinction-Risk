@@ -261,6 +261,7 @@ summary(Multi_lm_a)
 
 #### Paired Analysis
 
+
 #preparing the paired dataset
 NApaired$HabitatBreadth1 <- apply(NApaired[,c(24:35)], 1, sum)
 NApaired$HabitatBreadth2 <- apply(NApaired[,c(63:74)], 1, sum)
@@ -279,29 +280,10 @@ NApaired$SVLmale2 <- ifelse(is.na(NApaired$MeanSVL_Male_mm2), ifelse(is.na(NApai
 NApaired$SVLMFmean2 <- rowMeans(NApaired[,c("SVLfemale2", "SVLmale2")])
 NApaired$SVL2 <- ifelse(!is.na(NApaired$SVLunspecified2) & !is.na(NApaired$SVLfemale2) & !is.na(NApaired$SVLmale2), rowMeans(NApaired[,c("SVLunspecified2", "SVLMFmean2")]), ifelse(is.na(NApaired$SVLunspecified2), ifelse(is.na(NApaired$SVLfemale2), ifelse(is.na(NApaired$SVLmale2), NA, NApaired$SVLmale2), ifelse(is.na(NApaired$SVLmale2), NApaired$SVLfemale2, NApaired$SVLMFmean2)), NApaired$SVLunspecified2))
 
-## Calculating Pair Differences
-NApaired$SVLDiff <- NApaired$SVL2 - NApaired$SVL1
-NApaired$ClutchSizeDiff <- NApaired$ClutchSize2 - NApaired$ClutchSize1
-NApaired$HabitatBreadthDiff <- NApaired$HabitatBreadth2 - NApaired$HabitatBreadth1
-
 ## Wilcoxon Tests
-wilcox.test(NApaired$SVLDiff)
-wilcox.test(NApaired$ClutchSizeDiff)
-wilcox.test(NApaired$HabitatBreadthDiff)
-
-
-
-
-
-
-
-
-
-
-
-
-# paired tests: e.g., Wilcoxon rank sum test (wilcox.test)
-
-# need to rearrange data for paired comparison where you 
+wilcox.test(NApaired$SVL1, NApaired$SVL2, paired = TRUE)
+wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
+wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
+wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
   
