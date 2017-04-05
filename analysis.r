@@ -259,7 +259,9 @@ Multi_lm_a = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize + Anaxyrus$
 summary(Multi_lm_a)
 
 
+
 #### Paired Analysis
+
 
 
 #preparing the paired dataset
@@ -280,7 +282,7 @@ NApaired$SVLmale2 <- ifelse(is.na(NApaired$MeanSVL_Male_mm2), ifelse(is.na(NApai
 NApaired$SVLMFmean2 <- rowMeans(NApaired[,c("SVLfemale2", "SVLmale2")])
 NApaired$SVL2 <- ifelse(!is.na(NApaired$SVLunspecified2) & !is.na(NApaired$SVLfemale2) & !is.na(NApaired$SVLmale2), rowMeans(NApaired[,c("SVLunspecified2", "SVLMFmean2")]), ifelse(is.na(NApaired$SVLunspecified2), ifelse(is.na(NApaired$SVLfemale2), ifelse(is.na(NApaired$SVLmale2), NA, NApaired$SVLmale2), ifelse(is.na(NApaired$SVLmale2), NApaired$SVLfemale2, NApaired$SVLMFmean2)), NApaired$SVLunspecified2))
 
-## Wilcoxon Tests
+# Wilcoxon Tests
 wilcox.test(NApaired$SVL1, NApaired$SVL2, paired = TRUE)
 wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
 wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
