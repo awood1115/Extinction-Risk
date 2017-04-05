@@ -45,7 +45,8 @@ EuroAmphib$ArtificialTerrestrial[EuroAmphib$ArtificialTerrestrial > 0] <- 1
 EuroAmphib$Other[EuroAmphib$Habitat_Other_dunes == 1] <- 1
 EuroAmphib$Other[EuroAmphib$Habitat_Other_dunes == 0] <- 0
 
-EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(256,265)], 1, sum)
+EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(255,264)], 1, sum)
+#error in eorobean habitat breadth code because the habitat type columns created above are num not int type, so summing them doesn't work
 NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 
 #Condensing mean max and min Clutch Size into 1 mean Clutch Size column for NA dataset
@@ -96,13 +97,18 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 ##### Plots and Linear Models
 
 
-## North American Frogs
+## North American and European Anura Comparison
 
-# Single Trait Linear Models (All Frogs)
-plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "North American Anura Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
-lmsvl = lm(NAfrogs$threat ~ NAfrogs$SVL)
-abline(lmsvl)
-summary(lmsvl)
+# SVL
+plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", main = "North America and Europe Anura Threat Status vs. Mean SVL", col = "darkgreen", pch = 16)
+lm_svl = lm(NAfrogs$threat ~ NAfrogs$SVL)
+abline(lm_svl, col = "darkgreen")
+summary(lm_svl)
+points(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", main = "European Anura Threat Status vs Mean SVL", col = "mediumpurple3", pch = 16)
+lm_svlf = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
+abline(lm_svlf, col = "mediumpurple3")
+summary(lm_svlf)
+# Clutch Size
 plot(NAfrogs$ClutchSize, NAfrogs$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", main = "North American Anura Threat Status vs. Mean Clutch Size", col = "mediumpurple3", pch = 16)
 lmcs = lm(NAfrogs$threat ~ NAfrogs$ClutchSize)
 abline(lmcs)
