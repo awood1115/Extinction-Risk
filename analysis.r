@@ -94,6 +94,13 @@ Efrogs <- EuroAmphib[EuroAmphib$Order == 'Anura',]
 Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 
+### Diet
+NAthreatgroups <- group_by(NAfrogs, threat)
+summarise(NAthreatgroups, totalCar = sum(Cannibalism, na.rm = TRUE), totalMol = sum(Moluscivorous, na.rm = TRUE), totalIns = sum(Insectivorous, na.rm = TRUE))
+
+
+
+
 ##### Plots and Linear Models
 
 
