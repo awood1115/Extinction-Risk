@@ -45,7 +45,7 @@ EuroAmphib$ArtificialTerrestrial[EuroAmphib$ArtificialTerrestrial > 0] <- 1
 EuroAmphib$Other[EuroAmphib$Habitat_Other_dunes == 1] <- 1
 EuroAmphib$Other[EuroAmphib$Habitat_Other_dunes == 0] <- 0
 
-EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(255,264)], 1, sum)
+EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(255:264)], 1, sum)
 #error in eorobean habitat breadth code because the habitat type columns created above are num not int type, so summing them doesn't work
 NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 
@@ -159,7 +159,7 @@ abline(lm_svl_f, col = "mediumpurple3")
 summary(lm_svl_f)
 points(Esalamanders$SVL_Unspecified_mm, Esalamanders$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", col = "palevioletred4", pch = 16)
 lm_svl_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm)
-abline(lm_svl_s, col = "paleviolet4")
+abline(lm_svl_s, col = "palevioletred4")
 summary(lm_svl_s)
 legend(103,5, c("North American", "European"), pch = 16, 
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
