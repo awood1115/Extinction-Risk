@@ -126,6 +126,8 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 ##### Plots and Linear Models
 
+opar <- par()
+
 ## North American and European Anura Comparison
 par(mfrow=c(2,2), oma = c(0,0,2,0))
 # SVL
@@ -332,7 +334,7 @@ Multi_lm_a = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize +
                   Anaxyrus$HabitatBreadth + Anaxyrus$MinElevation_m)
 summary(Multi_lm_a)
 
-
+par(opar)
 
 #### Paired Analysis
 
