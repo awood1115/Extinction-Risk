@@ -4,6 +4,7 @@
 # Correlates of Extinction Risk in European and North American Amphibians
 
 
+
 ### Setting my working directory to the folder where all of my data and code are stored
 
 setwd('~/Desktop/Extinction-Risk')
@@ -11,8 +12,9 @@ setwd('~/Desktop/Extinction-Risk')
 library(dplyr)
 library(tidyr)
 
-### Reading in raw data files
 
+
+### Reading in raw data files
 
 NAfrogs = read.table("NorthAmericanFrogs.txt", header=T, sep = '\t', quote = "\"")
 NApaired = read.table("NorthAmericanFrogsPaired.txt", header=T, sep='\t', quote = "\"")
@@ -21,8 +23,8 @@ EuroAmphib = read.table("EuropeanAmphibians.txt", header=T, sep = '\t', quote = 
 Taxonomy = read.table("Taxonomy.txt", header=T, sep = '\t', quote = "\"")
 
 
-### Simplifying and preparing data for analysis
 
+### Simplifying and preparing data for analysis
 
 #Creating Habitat Breadth columns in both datasets
 EuroAmphib$Forest <- apply(EuroAmphib[,c(123:131)], 1, sum)
@@ -45,7 +47,6 @@ EuroAmphib$ArtificialTerrestrial <- apply(EuroAmphib[,c(171:176)], 1, sum)
 EuroAmphib$ArtificialTerrestrial[EuroAmphib$ArtificialTerrestrial > 0] <- 1
 EuroAmphib$Other[EuroAmphib$Habitat_Other_dunes == 1] <- 1
 EuroAmphib$Other[EuroAmphib$Habitat_Other_dunes == 0] <- 0
-
 EuroAmphib$HabitatBreadth <- apply(EuroAmphib[,c(255:264)], 1, sum)
 NAfrogs$HabitatBreadth <- apply(NAfrogs[,c(22:33)], 1, sum)
 
@@ -55,7 +56,6 @@ NAfrogs$ClutchSize <- ifelse(is.na(NAfrogs$MeanClutchSize), ifelse(is.na(NAfrogs
                       ifelse(is.na(NAfrogs$MinClutchSize), NAfrogs$MaxClutchSize, 
                       rowMeans(NAfrogs[,c("MinClutchSize", "MaxClutchSize")]))), 
                       NAfrogs$MeanClutchSize)
-#Europe dataset already in 1 column named number_of_eggs_or_offspring
 
 #Simplifying NAfrogs SVL data into 1 Mean SVL column
 NAfrogs$SVLunspecified <- ifelse(is.na(NAfrogs$MeanSVL_Unspecified_mm), 
@@ -93,19 +93,11 @@ NAfrogs$SVL <- ifelse(!is.na(NAfrogs$SVLunspecified) & !is.na(NAfrogs$SVLfemale)
                                     ifelse(is.na(NAfrogs$SVLmale), NA, NAfrogs$SVLmale), 
                                     ifelse(is.na(NAfrogs$SVLmale), NAfrogs$SVLfemale, 
                                            NAfrogs$SVLMFmean)), NAfrogs$SVLunspecified))
-#Mean SVL alredy in 1 column in Euro dastaset named SVL_unspecified_mm
+
 
 
 ### Organizing Threat Data
 
-
-# Creating threat binary column in the European Dataset
-EuroAmphib$ThreatBinary <- NA
-EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_Vulnerable == 1 | 
-                          EuroAmphib$IUCN_Status_Endangered == 1 | 
-                          EuroAmphib$IUCN_Status_NearThreatened == 1 | 
-                          EuroAmphib$IUCN_Status_CriticallyEndangered == 1] <- 1
-EuroAmphib$ThreatBinary[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 0
 # Creating Continuous Threat Status Values in European Dataset
 EuroAmphib$threat[EuroAmphib$IUCN_Status_LeastConcern == 1] <- 1
 EuroAmphib$threat[EuroAmphib$IUCN_Status_Vulnerable == 1] <- 2
@@ -117,41 +109,24 @@ threat = data.frame(IUCN_Threat_Status = c('LC', 'VU', 'NT', 'TH', 'EN', 'CR', '
                     threat = 1:7)
 
 
-### Joining in taxonomy and threat datasets
 
+### Joining in taxonomy and threat datasets
 
 NAfrogs <- merge(NAfrogs, Taxonomy, by = "SpeciesName") %>% left_join(threat)
 EuroAmphib <- merge(EuroAmphib, Taxonomy, by = "SpeciesName")
 
 
-### Dividing European dataset into Anura and Urodela order datasets
 
+### Dividing European dataset into Anura and Urodela order datasets
 
 Efrogs <- EuroAmphib[EuroAmphib$Order == 'Anura',]
 Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 
-### Diet
-diet = data.frame(diet = c('Ins', 'Mol', 'Can'), dietid = 1:3)
-
-NAthreatgroups <- group_by(NAfrogs, threat) %>%
-  summarise(Ins = sum(Insectivorous, na.rm = TRUE), 
-            Mol = sum(Moluscivorous, na.rm = TRUE), 
-            Can = sum(Cannibalism, na.rm = TRUE)) %>%
-  gather(key = diet, value = n, Ins:Can) %>%
-  left_join(diet) %>% data.frame()
-plot(NAthreatgroups$dietid, NAthreatgroups$threat, pch = 16, 
-     cex = NAthreatgroups$n/8, col = "darkgreen")
-
-
-
-
 
 ##### Plots and Linear Models
 
-
 ## North American and European Anura Comparison
-
 par(mfrow=c(2,2), oma = c(0,0,2,0))
 # SVL
 plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", 
@@ -164,8 +139,8 @@ points(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = 
 lm_svl_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_e, col = "mediumpurple3")
 summary(lm_svl_e)
-legend(110,6, c("North American", "European"), pch = 16, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
+legend(115,7.5, c("North American", "European"), pch = 16, 
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Clutch Size
 plot(NAfrogs$ClutchSize, NAfrogs$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", 
      main = "Mean Clutch Size", col = "darkgreen", pch = 16)
@@ -177,8 +152,8 @@ points(Efrogs$Number_of_eggs_or_offspring, Efrogs$threat, xlab = "Mean Clutch Si
 lm_cs_e = lm(Efrogs$threat ~ Efrogs$Number_of_eggs_or_offspring)
 abline(lm_cs_e, col = "mediumpurple3")
 summary(lm_cs_e)
-legend(19000,6, c("North American", "European"), pch = 16, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
+legend(19000,7.5, c("North American", "European"), pch = 16, 
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Habitat Breadth
 plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "Threat Status", 
      main = "Habitat Breadth", col = "darkgreen", pch = 16)
@@ -190,8 +165,8 @@ points(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", ylab = "T
 lm_hb_e = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_e, col = "mediumpurple3")
 summary(lm_hb_e)
-legend(6,6, c("North American", "European"), pch = 16, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
+legend(6.3,7.5, c("North American", "European"), pch = 16, 
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Minimum Elevation
 plot(NAfrogs$MinElevation_m, NAfrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "Threat Status", main = "Minimum Elevation", 
@@ -204,21 +179,20 @@ points(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Altitude (m)", ylab =
 lm_me_e = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_e, col = "mediumpurple3")
 summary(lm_me_e)
-legend(1700,7, c("North American", "European"), pch = 16, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
+legend(1700,7.5, c("North American", "European"), pch = 16, 
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
+mtext("North American and European Anura Extinction Risk Correlates", outer = TRUE, cex = 1.3)
+
 # Multi-Variable Linear Model North American Frogs
 Multi_lm_na = lm(NAfrogs$threat ~ NAfrogs$SVL + NAfrogs$ClutchSize + NAfrogs$HabitatBreadth + 
                    NAfrogs$MinElevation_m)
 summary(Multi_lm_na)
-mtext("North American and European Anura Extinction Risk Correlates", outer = TRUE, cex = 1.3)
-
 # Multi-Variable Linear Model European Frogs
 Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm + Efrogs$Number_of_eggs_or_offspring + 
                   Efrogs$HabitatBreadth + Efrogs$Altitude_min)
 summary(Multi_lm_e)
 
 ## European Anura and Urodela Comparison
-
 par(mfrow=c(2,2), oma = c(0,0,2,0))
 # SVL
 plot(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", 
@@ -232,7 +206,7 @@ lm_svl_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm)
 abline(lm_svl_s, col = "palevioletred4")
 summary(lm_svl_s)
 legend(103,5, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Clutch Size
 plot(Efrogs$Number_of_eggs_or_offspring, Efrogs$threat, xlab = "Mean Clutch Size", 
      ylab = "Threat Status", col = "mediumpurple3", 
@@ -246,7 +220,7 @@ lm_cs_s = lm(Esalamanders$threat ~ Esalamanders$Number_of_eggs_or_offspring)
 abline(lm_cs_s, col = "palevioletred4")
 summary(lm_cs_s)
 legend(17000,4, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Habitat Breadth
 plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", 
      ylab = "Threat Status", col = "mediumpurple3", 
@@ -260,7 +234,7 @@ lm_hb_s = lm(Esalamanders$threat ~ Esalamanders$HabitatBreadth)
 abline(lm_hb_s, col = "palevioletred4")
 summary(lm_hb_s)
 legend(3,5, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Minimum Elevation
 plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Altitude (m)", 
      ylab = "Threat Status", col = "mediumpurple3", 
@@ -274,9 +248,8 @@ lm_me_s = lm(Esalamanders$threat ~ Esalamanders$Altitude_min)
 abline(lm_me_s, col = "palevioletred4")
 summary(lm_me_s)
 legend(550,3.3, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 mtext("European Anura and Urodela Extinction Risk Correlates", outer = TRUE, cex = 1.3)
-
 
 # Multi-Variable Linear Model European Frogs
 Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm + 
@@ -289,13 +262,9 @@ Multi_lm_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm +
                   Esalamanders$Altitude_min)
 summary(Multi_lm_s)
 
-
 ## North American Anaxyrus and Rana Analyses
-
-
 Rana = NAfrogs[NAfrogs$Genus == 'Rana',]
 Anaxyrus = NAfrogs[NAfrogs$Genus == 'Anaxyrus',]
-
 par(mfrow=c(2,2), oma = c(0,0,2,0))
 # SVL
 plot(Rana$SVL, Rana$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", 
@@ -354,7 +323,6 @@ legend(700,5.8, c("Rana", "Anaxyrus"), pch = 16,
        col = c("skyblue3", "purple"), cex = 0.9, bty = "n")
 mtext("North American Anaxyrus and Rana Extinction Risk Correlates", outer = TRUE, cex = 1.3)
 
-
 # Multi-Variable Linear Model North American Rana
 Multi_lm_r = lm(Rana$threat ~ Rana$SVL + Rana$ClutchSize + Rana$HabitatBreadth + 
                   Rana$MinElevation_m)
@@ -367,8 +335,6 @@ summary(Multi_lm_a)
 
 
 #### Paired Analysis
-
-
 
 #preparing the paired dataset
 NApaired$HabitatBreadth1 <- apply(NApaired[,c(24:35)], 1, sum)
@@ -469,10 +435,22 @@ NApaired$SVL2 <- ifelse(!is.na(NApaired$SVLunspecified2) & !is.na(NApaired$SVLfe
                                       ifelse(is.na(NApaired$SVLmale2), NApaired$SVLfemale2, 
                                              NApaired$SVLMFmean2)), NApaired$SVLunspecified2))
 
-# Wilcoxon Tests
+## Wilcoxon Tests
 wilcox.test(NApaired$SVL1, NApaired$SVL2, paired = TRUE)
 wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
 wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
 wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
-  
+
+
+### Diet
+diet = data.frame(diet = c('Ins', 'Mol', 'Can'), dietid = 1:3)
+
+NAthreatgroups <- group_by(NAfrogs, threat) %>%
+  summarise(Ins = sum(Insectivorous, na.rm = TRUE), 
+            Mol = sum(Moluscivorous, na.rm = TRUE), 
+            Can = sum(Cannibalism, na.rm = TRUE)) %>%
+  gather(key = diet, value = n, Ins:Can) %>%
+  left_join(diet) %>% data.frame()
+plot(NAthreatgroups$dietid, NAthreatgroups$threat, pch = 16, 
+     cex = NAthreatgroups$n/8, col = "darkgreen")
