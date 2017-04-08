@@ -126,7 +126,7 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 ##### Plots and Linear Models
 
-opar <- par()
+
 
 ## North American and European Anura Comparison
 par(mfrow=c(2,2), oma = c(0,0,2,0))
@@ -207,7 +207,7 @@ points(Esalamanders$SVL_Unspecified_mm, Esalamanders$threat, xlab = "Mean SVL (m
 lm_svl_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm)
 abline(lm_svl_s, col = "palevioletred4")
 summary(lm_svl_s)
-legend(103,5, c("North American", "European"), pch = 16, 
+legend(105,6.5, c("North American", "European"), pch = 16, 
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Clutch Size
 plot(Efrogs$Number_of_eggs_or_offspring, Efrogs$threat, xlab = "Mean Clutch Size", 
@@ -221,7 +221,7 @@ points(Esalamanders$Number_of_eggs_or_offspring, Esalamanders$threat, xlab = "Me
 lm_cs_s = lm(Esalamanders$threat ~ Esalamanders$Number_of_eggs_or_offspring)
 abline(lm_cs_s, col = "palevioletred4")
 summary(lm_cs_s)
-legend(17000,4, c("North American", "European"), pch = 16, 
+legend(17000,6.5, c("North American", "European"), pch = 16, 
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Habitat Breadth
 plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", 
@@ -235,7 +235,7 @@ points(Esalamanders$HabitatBreadth, Esalamanders$threat, xlab = "Habitat Breadth
 lm_hb_s = lm(Esalamanders$threat ~ Esalamanders$HabitatBreadth)
 abline(lm_hb_s, col = "palevioletred4")
 summary(lm_hb_s)
-legend(3,5, c("North American", "European"), pch = 16, 
+legend(2.7,6.5, c("North American", "European"), pch = 16, 
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Minimum Elevation
 plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Altitude (m)", 
@@ -249,7 +249,7 @@ points(Esalamanders$Altitude_min, Esalamanders$threat, xlab = "Minimum Altitude 
 lm_me_s = lm(Esalamanders$threat ~ Esalamanders$Altitude_min)
 abline(lm_me_s, col = "palevioletred4")
 summary(lm_me_s)
-legend(550,3.3, c("North American", "European"), pch = 16, 
+legend(550,4, c("North American", "European"), pch = 16, 
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
 mtext("European Anura and Urodela Extinction Risk Correlates", outer = TRUE, cex = 1.3)
 
@@ -279,8 +279,8 @@ points(Anaxyrus$SVL, Anaxyrus$threat, xlab = "Mean SVL(mm)", ylab = "Threat Stat
 lm_svl_a = lm(Anaxyrus$threat ~ Anaxyrus$SVL)
 abline(lm_svl_a, col = "purple")
 summary(lm_svl_a)
-legend(125,5.5, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n")
+legend(128,6.5, c("Rana", "Anaxyrus"), pch = 16, 
+       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Clutch Size
 plot(Rana$ClutchSize, Rana$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", 
      main = "Mean Clutch Size", 
@@ -293,8 +293,8 @@ points(Anaxyrus$ClutchSize, Anaxyrus$threat, xlab = "Mean Clutch Size", ylab = "
 lm_cs_a = lm(Anaxyrus$threat ~ Anaxyrus$ClutchSize)
 abline(lm_cs_a, col = "purple")
 summary(lm_cs_a)
-legend(8000,5.5, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n")
+legend(8200,6.5, c("Rana", "Anaxyrus"), pch = 16, 
+       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Habitat Breadth
 plot(Rana$HabitatBreadth, Rana$threat, xlab = "Habitat Breadth", ylab = "Threat Status", 
      main = "Habitat Breadth", 
@@ -307,8 +307,8 @@ points(Anaxyrus$HabitatBreadth, Anaxyrus$threat, xlab = "Habitat Breadth",
 lm_hb_a = lm(Anaxyrus$threat ~ Anaxyrus$HabitatBreadth)
 abline(lm_hb_a, col = "purple")
 summary(lm_hb_a)
-legend(5.5,5.5, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n")
+legend(5.6,6.5, c("Rana", "Anaxyrus"), pch = 16, 
+       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Minimum Elevation
 plot(Rana$MinElevation_m, Rana$threat, xlab = "Minimum Elevation (m)", ylab = "Threat Status", 
      main = "Minimum Elevation", 
@@ -321,8 +321,8 @@ points(Anaxyrus$MinElevation_m, Anaxyrus$threat, xlab = "Minimum Elevation (m)",
 lm_me_a = lm(Anaxyrus$threat ~ Anaxyrus$MinElevation_m)
 abline(lm_me_a, col = "purple")
 summary(lm_me_a)
-legend(700,5.8, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n")
+legend(700,6.5, c("Rana", "Anaxyrus"), pch = 16, 
+       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
 mtext("North American Anaxyrus and Rana Extinction Risk Correlates", outer = TRUE, cex = 1.3)
 
 # Multi-Variable Linear Model North American Rana
