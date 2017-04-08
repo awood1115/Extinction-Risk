@@ -334,7 +334,7 @@ Multi_lm_a = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize +
                   Anaxyrus$HabitatBreadth + Anaxyrus$MinElevation_m)
 summary(Multi_lm_a)
 
-par(opar)
+
 
 #### Paired Analysis
 
@@ -443,16 +443,3 @@ wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
 wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
 wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
-
-
-### Diet
-diet = data.frame(diet = c('Ins', 'Mol', 'Can'), dietid = 1:3)
-
-NAthreatgroups <- group_by(NAfrogs, threat) %>%
-  summarise(Ins = sum(Insectivorous, na.rm = TRUE), 
-            Mol = sum(Moluscivorous, na.rm = TRUE), 
-            Can = sum(Cannibalism, na.rm = TRUE)) %>%
-  gather(key = diet, value = n, Ins:Can) %>%
-  left_join(diet) %>% data.frame()
-plot(NAthreatgroups$dietid, NAthreatgroups$threat, pch = 16, 
-     cex = NAthreatgroups$n/8, col = "darkgreen")
