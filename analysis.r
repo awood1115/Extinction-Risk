@@ -129,6 +129,7 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 
 ## North American and European Anura Comparison
+pdf('plots/NA_Eur_anura.pdf', height = 8, width = 10)
 par(mfrow=c(2,2), oma = c(0,0,2,0))
 # SVL
 plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", 
@@ -141,7 +142,7 @@ points(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = 
 lm_svl_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_e, col = "mediumpurple3")
 summary(lm_svl_e)
-legend(115,6.5, c("North American", "European"), pch = 16, 
+legend("top", c("North American", "European"), pch = 16, 
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Clutch Size
 plot(NAfrogs$ClutchSize, NAfrogs$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", 
@@ -184,6 +185,8 @@ summary(lm_me_e)
 legend(1700,6.5, c("North American", "European"), pch = 16, 
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 mtext("North American and European Anura Extinction Risk Correlates", outer = TRUE, cex = 1.3)
+dev.off()
+
 
 # Multi-Variable Linear Model North American Frogs
 Multi_lm_na = lm(NAfrogs$threat ~ NAfrogs$SVL + NAfrogs$ClutchSize + NAfrogs$HabitatBreadth + 
@@ -443,3 +446,10 @@ wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
 wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
 wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
+boxplot(NApaired$SVL2-NApaired$SVL1)
+NApaired$SVLdiff = NApaired$SVL2-NApaired$SVL1
+NApaired$SVLdiff = NApaired$ClutchSize2-NApaired$ClutchSize1
+NApaired$SVLdiff = NApaired$SVL2-NApaired$SVL1
+NApaired$CSdiff = NApaired$ClutchSize2-NApaired$ClutchSize1
+boxplot(NApaired[, c('SVLdiff', 'CSdiff')])
+wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
