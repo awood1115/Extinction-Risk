@@ -130,61 +130,59 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 ## North American and European Anura Comparison
 pdf('plots/NA_Eur_anura.pdf', height = 8, width = 10)
-par(mfrow=c(2,2), oma = c(0,0,2,0))
+par(mfrow=c(2,2), oma = c(0,1,2,0))
 # SVL
-plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", 
+plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "", 
      main = "Mean SVL", col = "darkgreen", pch = 16)
 lm_svl_na = lm(NAfrogs$threat ~ NAfrogs$SVL)
 abline(lm_svl_na, col = "darkgreen")
 summary(lm_svl_na)
-points(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", 
+points(Efrogs$SVL_Unspecified_mm, Efrogs$threat, 
        col = "mediumpurple3", pch = 16)
 lm_svl_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_e, col = "mediumpurple3")
 summary(lm_svl_e)
-legend("top", c("North American", "European"), pch = 16, 
+legend("topright", c("North American", "European"), pch = 17, 
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Clutch Size
-plot(NAfrogs$ClutchSize, NAfrogs$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", 
+plot(log(NAfrogs$ClutchSize), NAfrogs$threat, xlab = "Log Mean Clutch Size", ylab = "", 
      main = "Mean Clutch Size", col = "darkgreen", pch = 16)
-lm_cs_na = lm(NAfrogs$threat ~ NAfrogs$ClutchSize)
+lm_cs_na = lm(NAfrogs$threat ~ log(NAfrogs$ClutchSize))
 abline(lm_cs_na, col = "darkgreen")
 summary(lm_cs_na)
-points(Efrogs$Number_of_eggs_or_offspring, Efrogs$threat, xlab = "Mean Clutch Size", 
-       ylab = "Threat Status", col = "mediumpurple3", pch = 16)
-lm_cs_e = lm(Efrogs$threat ~ Efrogs$Number_of_eggs_or_offspring)
+points(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, col = "mediumpurple3", pch = 16)
+lm_cs_e = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_e, col = "mediumpurple3")
 summary(lm_cs_e)
-legend(19000,6.5, c("North American", "European"), pch = 16, 
+legend("topleft", c("North American", "European"), pch = 17, 
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Habitat Breadth
-plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "Threat Status", 
+plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "", 
      main = "Habitat Breadth", col = "darkgreen", pch = 16)
 lm_hb_na = lm(NAfrogs$threat ~ NAfrogs$HabitatBreadth)
 abline(lm_hb_na, col = "darkgreen")
 summary(lm_hb_na)
-points(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", ylab = "Threat Status", 
+points(Efrogs$HabitatBreadth, Efrogs$threat, 
        col = "mediumpurple3", pch = 16)
 lm_hb_e = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_e, col = "mediumpurple3")
 summary(lm_hb_e)
-legend(6.3,6.5, c("North American", "European"), pch = 16, 
+legend("topright", c("North American", "European"), pch = 17, 
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
 # Minimum Elevation
 plot(NAfrogs$MinElevation_m, NAfrogs$threat, xlab = "Minimum Elevation (m)", 
-     ylab = "Threat Status", main = "Minimum Elevation", 
+     ylab = "", main = "Minimum Elevation", 
      col = "darkgreen", pch = 16)
 lm_me_na = lm(NAfrogs$threat ~ NAfrogs$MinElevation_m)
 abline(lm_me_na, col = "darkgreen")
 summary(lm_me_na)
-points(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Altitude (m)", ylab = "Threat Status", 
-       col = "mediumpurple3", pch = 16)
+points(Efrogs$Altitude_min, Efrogs$threat, col = "mediumpurple3", pch = 16)
 lm_me_e = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_e, col = "mediumpurple3")
 summary(lm_me_e)
-legend(1700,6.5, c("North American", "European"), pch = 16, 
+legend("topright", c("North American", "European"), pch = 17, 
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
-mtext("North American and European Anura Extinction Risk Correlates", outer = TRUE, cex = 1.3)
+mtext("Threat Status", side = 2, outer = TRUE)
 dev.off()
 
 
