@@ -133,7 +133,7 @@ pdf('plots/NA_Eur_anura.pdf', height = 8, width = 10)
 par(mfrow=c(2,2), oma = c(0,2,2,0))
 # SVL
 plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "", 
-     main = "Mean SVL", col = "darkgreen", pch = 16)
+     main = "Body Size", col = "darkgreen", pch = 16)
 lm_svl_na = lm(NAfrogs$threat ~ NAfrogs$SVL)
 abline(lm_svl_na, col = "darkgreen")
 summary(lm_svl_na)
@@ -146,7 +146,7 @@ legend("topright", c("North American", "European"), pch = 17,
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
 # Clutch Size
 plot(log(NAfrogs$ClutchSize), NAfrogs$threat, xlab = "ln(Mean Clutch Size)", ylab = "", 
-     main = "Mean Clutch Size", col = "darkgreen", pch = 16)
+     main = "Fecundity", col = "darkgreen", pch = 16)
 lm_cs_na = lm(NAfrogs$threat ~ log(NAfrogs$ClutchSize))
 abline(lm_cs_na, col = "darkgreen")
 summary(lm_cs_na)
@@ -159,7 +159,7 @@ legend("topleft", c("North American", "European"), pch = 17,
        col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
 # Habitat Breadth
 plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "", 
-     main = "Habitat Breadth", col = "darkgreen", pch = 16)
+     main = "Habitat Specificity", col = "darkgreen", pch = 16)
 lm_hb_na = lm(NAfrogs$threat ~ NAfrogs$HabitatBreadth)
 abline(lm_hb_na, col = "darkgreen")
 summary(lm_hb_na)
@@ -202,7 +202,7 @@ pdf('plots/EurF_EurS.pdf', height = 8, width = 10)
 par(mfrow=c(2,2), oma = c(0,2,2,0))
 # SVL
 plot(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "", 
-     col = "mediumpurple3", main = "Mean SVL", pch = 16)
+     col = "mediumpurple3", main = "Body Size", pch = 16)
 lm_svl_f = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_f, col = "mediumpurple3")
 summary(lm_svl_f)
@@ -215,7 +215,7 @@ legend("topright", c("Anura", "Urodela"), pch = 17,
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
 # Clutch Size
 plot(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, xlab = "ln(Mean Clutch Size)", 
-     ylab = "", col = "mediumpurple3", main = "Clutch Size", pch = 16)
+     ylab = "", col = "mediumpurple3", main = "Fecundity", pch = 16)
 lm_cs_f = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_f, col = "mediumpurple3")
 summary(lm_cs_f)
@@ -228,7 +228,7 @@ legend(6,5.3, c("Anura", "Urodela"), pch = 17,
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
 # Habitat Breadth
 plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", 
-     ylab = "", col = "mediumpurple3", main = "Habitat Breadth", pch = 16)
+     ylab = "", col = "mediumpurple3", main = "Habitat Specificity", pch = 16)
 lm_hb_f = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_f, col = "mediumpurple3")
 summary(lm_hb_f)
@@ -240,7 +240,7 @@ summary(lm_hb_s)
 legend("topright", c("Anura", "Urodela"), pch = 17, 
        col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
 # Minimum Elevation
-plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Altitude (m)", 
+plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "", col = "mediumpurple3", 
      main = "Minimum Elevation", pch = 16)
 lm_me_f = lm(Efrogs$threat ~ Efrogs$Altitude_min)
@@ -391,4 +391,17 @@ boxplot(NApaired[, c('SVLdiff', 'ClutchSizediff',
                      'HabitatBreadthdiff', "MinElevationdiff")], 
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
                   "Habitat Breadth", "Minimum Elevation (m)"))
+abline(h=0, col = "blue")
+dev.off()
+
+pdf('plots/pairedseparate.pdf', height = 8, width = 10)
+par(mfrow=c(2,2))
+boxplot(NApaired$SVLdiff)
+abline(h=0, col = "blue")
+boxplot(NApaired$ClutchSizediff)
+abline(h=0, col = "blue")
+boxplot(NApaired$HabitatBreadthdiff)
+abline(h=0, col = "blue")
+boxplot(NApaired$MinElevationdiff)
+abline(h=0, col = "blue")
 dev.off()
