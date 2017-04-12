@@ -130,7 +130,7 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 ## North American and European Anura Comparison
 pdf('plots/NA_Eur_anura.pdf', height = 8, width = 10)
-par(mfrow=c(2,2), oma = c(0,1,2,0))
+par(mfrow=c(2,2), oma = c(0,2,2,0))
 # SVL
 plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "", 
      main = "Mean SVL", col = "darkgreen", pch = 16)
@@ -143,19 +143,20 @@ lm_svl_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_e, col = "mediumpurple3")
 summary(lm_svl_e)
 legend("topright", c("North American", "European"), pch = 17, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
 # Clutch Size
-plot(log(NAfrogs$ClutchSize), NAfrogs$threat, xlab = "Log Mean Clutch Size", ylab = "", 
+plot(log(NAfrogs$ClutchSize), NAfrogs$threat, xlab = "ln(Mean Clutch Size)", ylab = "", 
      main = "Mean Clutch Size", col = "darkgreen", pch = 16)
 lm_cs_na = lm(NAfrogs$threat ~ log(NAfrogs$ClutchSize))
 abline(lm_cs_na, col = "darkgreen")
 summary(lm_cs_na)
-points(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, col = "mediumpurple3", pch = 16)
+points(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, 
+       col = "mediumpurple3", pch = 16)
 lm_cs_e = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_e, col = "mediumpurple3")
 summary(lm_cs_e)
 legend("topleft", c("North American", "European"), pch = 17, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
 # Habitat Breadth
 plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "", 
      main = "Habitat Breadth", col = "darkgreen", pch = 16)
@@ -168,7 +169,7 @@ lm_hb_e = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_e, col = "mediumpurple3")
 summary(lm_hb_e)
 legend("topright", c("North American", "European"), pch = 17, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
 # Minimum Elevation
 plot(NAfrogs$MinElevation_m, NAfrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "", main = "Minimum Elevation", 
@@ -181,78 +182,79 @@ lm_me_e = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_e, col = "mediumpurple3")
 summary(lm_me_e)
 legend("topright", c("North American", "European"), pch = 17, 
-       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n", y.intersp = 0.5)
+       col = c("darkgreen", "mediumpurple3"), cex = 0.9, bty = "n")
 mtext("Threat Status", side = 2, outer = TRUE)
 dev.off()
 
-
 # Multi-Variable Linear Model North American Frogs
-Multi_lm_na = lm(NAfrogs$threat ~ NAfrogs$SVL + NAfrogs$ClutchSize + NAfrogs$HabitatBreadth + 
-                   NAfrogs$MinElevation_m)
+Multi_lm_na = lm(NAfrogs$threat ~ NAfrogs$SVL + NAfrogs$ClutchSize + 
+                   NAfrogs$HabitatBreadth + NAfrogs$MinElevation_m)
 summary(Multi_lm_na)
 # Multi-Variable Linear Model European Frogs
-Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm + Efrogs$Number_of_eggs_or_offspring + 
+Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm + 
+                  Efrogs$Number_of_eggs_or_offspring + 
                   Efrogs$HabitatBreadth + Efrogs$Altitude_min)
 summary(Multi_lm_e)
 
+
 ## European Anura and Urodela Comparison
-par(mfrow=c(2,2), oma = c(0,0,2,0))
+pdf('plots/EurF_EurS.pdf', height = 8, width = 10)
+par(mfrow=c(2,2), oma = c(0,2,2,0))
 # SVL
-plot(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "Threat Status", 
+plot(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "", 
      col = "mediumpurple3", main = "Mean SVL", pch = 16)
 lm_svl_f = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_f, col = "mediumpurple3")
 summary(lm_svl_f)
-points(Esalamanders$SVL_Unspecified_mm, Esalamanders$threat, xlab = "Mean SVL (mm)", 
-       ylab = "Threat Status", col = "palevioletred4", pch = 16)
+points(Esalamanders$SVL_Unspecified_mm, Esalamanders$threat, 
+       col = "palevioletred4", pch = 16)
 lm_svl_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm)
 abline(lm_svl_s, col = "palevioletred4")
 summary(lm_svl_s)
-legend(105,5.4, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
+legend("topright", c("Anura", "Urodela"), pch = 17, 
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
 # Clutch Size
-plot(Efrogs$Number_of_eggs_or_offspring, Efrogs$threat, xlab = "Mean Clutch Size", 
-     ylab = "Threat Status", col = "mediumpurple3", 
-     main = "Clutch Size", pch = 16)
-lm_cs_f = lm(Efrogs$threat ~ Efrogs$Number_of_eggs_or_offspring)
+plot(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, xlab = "ln(Mean Clutch Size)", 
+     ylab = "", col = "mediumpurple3", main = "Clutch Size", pch = 16)
+lm_cs_f = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_f, col = "mediumpurple3")
 summary(lm_cs_f)
-points(Esalamanders$Number_of_eggs_or_offspring, Esalamanders$threat, xlab = "Mean Clutch Size", 
-       ylab = "Threat Status", col = "palevioletred4", pch = 16)
-lm_cs_s = lm(Esalamanders$threat ~ Esalamanders$Number_of_eggs_or_offspring)
+points(log(Esalamanders$Number_of_eggs_or_offspring), Esalamanders$threat, 
+       col = "palevioletred4", pch = 16)
+lm_cs_s = lm(Esalamanders$threat ~ log(Esalamanders$Number_of_eggs_or_offspring))
 abline(lm_cs_s, col = "palevioletred4")
 summary(lm_cs_s)
-legend(17000,5.4, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
+legend(6,5.3, c("Anura", "Urodela"), pch = 17, 
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
 # Habitat Breadth
 plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", 
-     ylab = "Threat Status", col = "mediumpurple3", 
-     main = "Habitat Breadth", pch = 16)
+     ylab = "", col = "mediumpurple3", main = "Habitat Breadth", pch = 16)
 lm_hb_f = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_f, col = "mediumpurple3")
 summary(lm_hb_f)
-points(Esalamanders$HabitatBreadth, Esalamanders$threat, xlab = "Habitat Breadth", 
-       ylab = "Threat Status", col = "palevioletred4", pch = 16)
+points(Esalamanders$HabitatBreadth, Esalamanders$threat, 
+       col = "palevioletred4", pch = 16)
 lm_hb_s = lm(Esalamanders$threat ~ Esalamanders$HabitatBreadth)
 abline(lm_hb_s, col = "palevioletred4")
 summary(lm_hb_s)
-legend(2.7,5.4, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
+legend("topright", c("Anura", "Urodela"), pch = 17, 
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
 # Minimum Elevation
 plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Altitude (m)", 
-     ylab = "Threat Status", col = "mediumpurple3", 
+     ylab = "", col = "mediumpurple3", 
      main = "Minimum Elevation", pch = 16)
 lm_me_f = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_f, col = "mediumpurple3")
 summary(lm_me_f)
-points(Esalamanders$Altitude_min, Esalamanders$threat, xlab = "Minimum Altitude (m)", 
-       ylab = "Threat Status", col = "palevioletred4", pch = 16)
+points(Esalamanders$Altitude_min, Esalamanders$threat, 
+       col = "palevioletred4", pch = 16)
 lm_me_s = lm(Esalamanders$threat ~ Esalamanders$Altitude_min)
 abline(lm_me_s, col = "palevioletred4")
 summary(lm_me_s)
-legend(550,3.8, c("North American", "European"), pch = 16, 
-       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n", y.intersp = 0.5)
-mtext("European Anura and Urodela Extinction Risk Correlates", outer = TRUE, cex = 1.3)
+legend("right", c("Anura", "Urodela"), pch = 17, 
+       col = c("mediumpurple3", "palevioletred4"), cex = 0.9, bty = "n")
+mtext("Threat Status", outer = TRUE, side = 2)
+dev.off()
 
 # Multi-Variable Linear Model European Frogs
 Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm + 
@@ -261,83 +263,15 @@ Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm +
 summary(Multi_lm_e)
 # Multi-Variable Linear Model European Frogs
 Multi_lm_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm + 
-                  Esalamanders$Number_of_eggs_or_offspring + Esalamanders$HabitatBreadth + 
+                  Esalamanders$Number_of_eggs_or_offspring + 
+                  Esalamanders$HabitatBreadth + 
                   Esalamanders$Altitude_min)
 summary(Multi_lm_s)
-
-## North American Anaxyrus and Rana Analyses
-Rana = NAfrogs[NAfrogs$Genus == 'Rana',]
-Anaxyrus = NAfrogs[NAfrogs$Genus == 'Anaxyrus',]
-par(mfrow=c(2,2), oma = c(0,0,2,0))
-# SVL
-plot(Rana$SVL, Rana$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", 
-     main = "Mean SVL", col = "skyblue3", pch = 16)
-lm_svl_r = lm(Rana$threat ~ Rana$SVL)
-abline(lm_svl_r, col = "skyblue3")
-summary(lm_svl_r)
-points(Anaxyrus$SVL, Anaxyrus$threat, xlab = "Mean SVL(mm)", ylab = "Threat Status", 
-       col = "purple", pch = 16)
-lm_svl_a = lm(Anaxyrus$threat ~ Anaxyrus$SVL)
-abline(lm_svl_a, col = "purple")
-summary(lm_svl_a)
-legend(128,5.4, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
-# Clutch Size
-plot(Rana$ClutchSize, Rana$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", 
-     main = "Mean Clutch Size", 
-     col = "skyblue3", pch = 16)
-lm_cs_r = lm(Rana$threat ~ Rana$ClutchSize)
-abline(lm_cs_r, col = "skyblue3")
-summary(lm_cs_r)
-points(Anaxyrus$ClutchSize, Anaxyrus$threat, xlab = "Mean Clutch Size", ylab = "Threat Status", 
-       col = "purple", pch = 16)
-lm_cs_a = lm(Anaxyrus$threat ~ Anaxyrus$ClutchSize)
-abline(lm_cs_a, col = "purple")
-summary(lm_cs_a)
-legend(8200,5.4, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
-# Habitat Breadth
-plot(Rana$HabitatBreadth, Rana$threat, xlab = "Habitat Breadth", ylab = "Threat Status", 
-     main = "Habitat Breadth", 
-     col = "skyblue3", pch = 16)
-lm_hb_r = lm(Rana$threat ~ Rana$HabitatBreadth)
-abline(lm_hb_r, col = "skyblue3")
-summary(lm_hb_r)
-points(Anaxyrus$HabitatBreadth, Anaxyrus$threat, xlab = "Habitat Breadth", 
-       ylab = "Threat Status", col = "purple", pch = 16)
-lm_hb_a = lm(Anaxyrus$threat ~ Anaxyrus$HabitatBreadth)
-abline(lm_hb_a, col = "purple")
-summary(lm_hb_a)
-legend(5.6,5.4, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
-# Minimum Elevation
-plot(Rana$MinElevation_m, Rana$threat, xlab = "Minimum Elevation (m)", ylab = "Threat Status", 
-     main = "Minimum Elevation", 
-     col = "skyblue3", pch = 16)
-lm_me_r = lm(Rana$threat ~ Rana$MinElevation_m)
-abline(lm_me_r, col = "skyblue3")
-summary(lm_me_r)
-points(Anaxyrus$MinElevation_m, Anaxyrus$threat, xlab = "Minimum Elevation (m)", 
-       ylab = "Threat Status", col = "purple", pch = 16)
-lm_me_a = lm(Anaxyrus$threat ~ Anaxyrus$MinElevation_m)
-abline(lm_me_a, col = "purple")
-summary(lm_me_a)
-legend(700,5.4, c("Rana", "Anaxyrus"), pch = 16, 
-       col = c("skyblue3", "purple"), cex = 0.9, bty = "n", y.intersp = 0.5)
-mtext("North American Anaxyrus and Rana Extinction Risk Correlates", outer = TRUE, cex = 1.3)
-
-# Multi-Variable Linear Model North American Rana
-Multi_lm_r = lm(Rana$threat ~ Rana$SVL + Rana$ClutchSize + Rana$HabitatBreadth + 
-                  Rana$MinElevation_m)
-summary(Multi_lm_r)
-# Multi-Variable Linear Model North American Anaxyrus
-Multi_lm_a = lm(Anaxyrus$threat ~ Anaxyrus$SVL + Anaxyrus$ClutchSize + 
-                  Anaxyrus$HabitatBreadth + Anaxyrus$MinElevation_m)
-summary(Multi_lm_a)
 
 
 
 #### Paired Analysis
+
 
 #preparing the paired dataset
 NApaired$HabitatBreadth1 <- apply(NApaired[,c(24:35)], 1, sum)
@@ -438,16 +372,23 @@ NApaired$SVL2 <- ifelse(!is.na(NApaired$SVLunspecified2) & !is.na(NApaired$SVLfe
                                       ifelse(is.na(NApaired$SVLmale2), NApaired$SVLfemale2, 
                                              NApaired$SVLMFmean2)), NApaired$SVLunspecified2))
 
+
 ## Wilcoxon Tests
 wilcox.test(NApaired$SVL1, NApaired$SVL2, paired = TRUE)
 wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
 wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
 wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
-boxplot(NApaired$SVL2-NApaired$SVL1)
+## Creating Difference Columns
 NApaired$SVLdiff = NApaired$SVL2-NApaired$SVL1
-NApaired$SVLdiff = NApaired$ClutchSize2-NApaired$ClutchSize1
-NApaired$SVLdiff = NApaired$SVL2-NApaired$SVL1
-NApaired$CSdiff = NApaired$ClutchSize2-NApaired$ClutchSize1
-boxplot(NApaired[, c('SVLdiff', 'CSdiff')])
-wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
+NApaired$ClutchSizediff = NApaired$ClutchSize2-NApaired$ClutchSize1
+NApaired$HabitatBreadthdiff = NApaired$HabitatBreadth2-NApaired$HabitatBreadth1
+NApaired$MinElevationdiff = NApaired$MinElevation_m2-NApaired$MinElevation_m1
+
+# Paired Difference Boxplots
+pdf('plots/paired.pdf', height = 8, width = 10)
+boxplot(NApaired[, c('SVLdiff', 'ClutchSizediff', 
+                     'HabitatBreadthdiff', "MinElevationdiff")], 
+        names = c("Mean SVL (mm)", "Mean Clutch Size", 
+                  "Habitat Breadth", "Minimum Elevation (m)"))
+dev.off()
