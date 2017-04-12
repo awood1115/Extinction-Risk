@@ -407,10 +407,10 @@ abline(h=0, col = "blue")
 dev.off()
 
 ## Creating Ratio Columns
-NApaired$SVLratio = NApaired$SVL2 / NApaired$SVL1
-NApaired$ClutchSizeratio = NApaired$ClutchSize2 / NApaired$ClutchSize1
-NApaired$HabitatBreadthratio = NApaired$HabitatBreadth2 / NApaired$HabitatBreadth1
-NApaired$MinElevationratio = NApaired$MinElevation_m2 / NApaired$MinElevation_m1
+NApaired$SVLratio = NApaired$SVL1 / NApaired$SVL2
+NApaired$ClutchSizeratio = NApaired$ClutchSize1 / NApaired$ClutchSize2
+NApaired$HabitatBreadthratio = NApaired$HabitatBreadth1 / NApaired$HabitatBreadth2
+NApaired$MinElevationratio = NApaired$MinElevation_m1 + 1 / NApaired$MinElevation_m2 + 1
 
 ## Paired Ratio Boxplots
 pdf('plots/pairedratio.pdf', height = 8, width = 10)
