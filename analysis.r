@@ -405,3 +405,18 @@ abline(h=0, col = "blue")
 boxplot(NApaired$MinElevationdiff)
 abline(h=0, col = "blue")
 dev.off()
+
+## Creating Ratio Columns
+NApaired$SVLratio = NApaired$SVL2 / NApaired$SVL1
+NApaired$ClutchSizeratio = NApaired$ClutchSize2 / NApaired$ClutchSize1
+NApaired$HabitatBreadthratio = NApaired$HabitatBreadth2 / NApaired$HabitatBreadth1
+NApaired$MinElevationratio = NApaired$MinElevation_m2 / NApaired$MinElevation_m1
+
+## Paired Ratio Boxplots
+pdf('plots/pairedratio.pdf', height = 8, width = 10)
+boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio', 
+                     'HabitatBreadthratio', "MinElevationratio")]), 
+        names = c("Mean SVL (mm)", "Mean Clutch Size", 
+                  "Habitat Breadth", "Minimum Elevation (m)"))
+abline(h=0, col = "blue")
+dev.off()
