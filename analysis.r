@@ -380,10 +380,10 @@ wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
 wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
 ## Creating Difference Columns
-NApaired$SVLdiff = NApaired$SVL2-NApaired$SVL1
-NApaired$ClutchSizediff = NApaired$ClutchSize2-NApaired$ClutchSize1
-NApaired$HabitatBreadthdiff = NApaired$HabitatBreadth2-NApaired$HabitatBreadth1
-NApaired$MinElevationdiff = NApaired$MinElevation_m2-NApaired$MinElevation_m1
+NApaired$SVLdiff = NApaired$SVL2 - NApaired$SVL1
+NApaired$ClutchSizediff = NApaired$ClutchSize2 - NApaired$ClutchSize1
+NApaired$HabitatBreadthdiff = NApaired$HabitatBreadth2 - NApaired$HabitatBreadth1
+NApaired$MinElevationdiff = NApaired$MinElevation_m2 - NApaired$MinElevation_m1
 
 # Paired Difference Boxplots
 pdf('plots/paired.pdf', height = 8, width = 10)
