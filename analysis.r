@@ -426,6 +426,9 @@ pdf('plots/pairedratio1-3.pdf', height = 8, width = 10)
 boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio', 'HabitatBreadthratio')]), 
         names = c("Mean SVL (mm)", "Mean Clutch Size", "Habitat Breadth"))
 abline(h=0, col = "blue")
+text(x=1, y=1.5, labels = "p-value=.417")
+text(x=2, y=1.5, labels = "p-value=.073")
+text(x=3, y=1.5, labels = "p-value=.023")
 dev.off()
 # last variable on own
 pdf('plots/pairedratio4.pdf', height = 8, width = 10)
