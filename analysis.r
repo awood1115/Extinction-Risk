@@ -410,7 +410,7 @@ dev.off()
 NApaired$SVLratio = NApaired$SVL1 / NApaired$SVL2
 NApaired$ClutchSizeratio = NApaired$ClutchSize1 / NApaired$ClutchSize2
 NApaired$HabitatBreadthratio = NApaired$HabitatBreadth1 / NApaired$HabitatBreadth2
-NApaired$MinElevationratio = NApaired$MinElevation_m1 + 1 / NApaired$MinElevation_m2 + 1
+NApaired$MinElevationratio = (NApaired$MinElevation_m1 + 1) / (NApaired$MinElevation_m2 + 1)
 
 ## Paired Ratio Boxplots
 pdf('plots/pairedratio.pdf', height = 8, width = 10)
@@ -418,5 +418,17 @@ boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio',
                      'HabitatBreadthratio', "MinElevationratio")]), 
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
                   "Habitat Breadth", "Minimum Elevation (m)"))
+abline(h=0, col = "blue")
+dev.off()
+
+# First 3 variables on own
+pdf('plots/pairedratio1-3.pdf', height = 8, width = 10)
+boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio', 'HabitatBreadthratio')]), 
+        names = c("Mean SVL (mm)", "Mean Clutch Size", "Habitat Breadth"))
+abline(h=0, col = "blue")
+dev.off()
+# last variable on own
+pdf('plots/pairedratio4.pdf', height = 8, width = 10)
+boxplot(log(NApaired$MinElevationratio), names = c("Minimum Elevation (m)"))
 abline(h=0, col = "blue")
 dev.off()
