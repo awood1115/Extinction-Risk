@@ -379,33 +379,6 @@ wilcox.test(NApaired$ClutchSize1, NApaired$ClutchSize2, paired = TRUE)
 wilcox.test(NApaired$HabitatBreadth1, NApaired$HabitatBreadth2, paired = TRUE)
 wilcox.test(NApaired$MinElevation_m1, NApaired$MinElevation_m2, paired = TRUE)
 
-## Creating Difference Columns
-NApaired$SVLdiff = NApaired$SVL2 - NApaired$SVL1
-NApaired$ClutchSizediff = NApaired$ClutchSize2 - NApaired$ClutchSize1
-NApaired$HabitatBreadthdiff = NApaired$HabitatBreadth2 - NApaired$HabitatBreadth1
-NApaired$MinElevationdiff = NApaired$MinElevation_m2 - NApaired$MinElevation_m1
-
-# Paired Difference Boxplots
-pdf('plots/paired.pdf', height = 8, width = 10)
-boxplot(NApaired[, c('SVLdiff', 'ClutchSizediff', 
-                     'HabitatBreadthdiff', "MinElevationdiff")], 
-        names = c("Mean SVL (mm)", "Mean Clutch Size", 
-                  "Habitat Breadth", "Minimum Elevation (m)"))
-abline(h=0, col = "blue")
-dev.off()
-
-pdf('plots/pairedseparate.pdf', height = 8, width = 10)
-par(mfrow=c(2,2))
-boxplot(NApaired$SVLdiff)
-abline(h=0, col = "blue")
-boxplot(NApaired$ClutchSizediff)
-abline(h=0, col = "blue")
-boxplot(NApaired$HabitatBreadthdiff)
-abline(h=0, col = "blue")
-boxplot(NApaired$MinElevationdiff)
-abline(h=0, col = "blue")
-dev.off()
-
 ## Creating Ratio Columns
 NApaired$SVLratio = NApaired$SVL1 / NApaired$SVL2
 NApaired$ClutchSizeratio = NApaired$ClutchSize1 / NApaired$ClutchSize2
@@ -418,20 +391,9 @@ boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio',
                      'HabitatBreadthratio', "MinElevationratio")]), 
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
                   "Habitat Breadth", "Minimum Elevation (m)"))
-abline(h=0, col = "blue")
-dev.off()
-
-# First 3 variables on own
-pdf('plots/pairedratio1-3.pdf', height = 8, width = 10)
-boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio', 'HabitatBreadthratio')]), 
-        names = c("Mean SVL (mm)", "Mean Clutch Size", "Habitat Breadth"))
-abline(h=0, col = "blue")
-text(x=1, y=1.5, labels = "p-value=.417")
-text(x=2, y=1.5, labels = "p-value=.073")
-text(x=3, y=1.5, labels = "p-value=.023")
-dev.off()
-# last variable on own
-pdf('plots/pairedratio4.pdf', height = 8, width = 10)
-boxplot(log(NApaired$MinElevationratio), names = c("Minimum Elevation (m)"))
-abline(h=0, col = "blue")
+abline(h=1, col = "blue")
+text(x=1, y=4, labels = "p-value = 0.417")
+text(x=2, y=4, labels = "p-value = 0.073")
+text(x=3, y=4, labels = "p-value = 0.023")
+text(x=4, y=4, labels = "p-value = 0.018")
 dev.off()
