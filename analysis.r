@@ -392,8 +392,8 @@ boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio',
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
                   "Habitat Breadth", "Minimum Elevation (m)"))
 abline(h=1, col = "blue")
-text(x=1, y=4, labels = "p-value = 0.417")
-text(x=2, y=4, labels = "p-value = 0.073")
-text(x=3, y=4, labels = "p-value = 0.023")
-text(x=4, y=4, labels = "p-value = 0.018")
+text(x=1, y=4, labels = "P = 0.417")
+text(x=2, y=4, labels = "P = 0.073")
+text(x=3, y=4, labels = "P = 0.023")
+text(x=4, y=4, labels = "P = 0.018")
 dev.off()
