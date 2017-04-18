@@ -213,6 +213,7 @@ abline(lm_svl_s, col = "darkgreen")
 summary(lm_svl_s)
 legend("topright", c("Anura", "Urodela"), pch = c(17,20), 
        col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
+mtext("(A)", 3, adj = 0, line = 0)
 # Clutch Size
 plot(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, xlab = "ln(Mean Clutch Size)", 
      ylab = "", col = "mediumpurple1", main = "Fecundity", pch = 17)
