@@ -144,6 +144,7 @@ abline(lm_svl_e, col = "mediumpurple1")
 summary(lm_svl_e)
 legend("topright", c("North American", "European"), pch = c(17,20), 
        col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
+mtext("(A)", 3, adj = 0, line = 1)
 # Clutch Size
 plot(log(NAfrogs$ClutchSize), NAfrogs$threat, xlab = "ln(Mean Clutch Size)", ylab = "", 
      main = "Fecundity", col = "darkgreen", pch = 17)
@@ -157,6 +158,7 @@ abline(lm_cs_e, col = "mediumpurple1")
 summary(lm_cs_e)
 legend("topleft", c("North American", "European"), pch = c(17,20), 
        col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
+mtext("(B)", 3, adj = 0, line = 1)
 # Habitat Breadth
 plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "", 
      main = "Habitat Specificity", col = "darkgreen", pch = 17)
@@ -170,6 +172,7 @@ abline(lm_hb_e, col = "mediumpurple1")
 summary(lm_hb_e)
 legend("topright", c("North American", "European"), pch = c(17,20), 
        col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
+mtext("(C)", 3, adj = 0, line = 1)
 # Minimum Elevation
 plot(NAfrogs$MinElevation_m, NAfrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "", main = "Minimum Elevation", 
@@ -183,6 +186,7 @@ abline(lm_me_e, col = "mediumpurple1")
 summary(lm_me_e)
 legend("topright", c("North American", "European"), pch = c(17,20), 
        col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
+mtext("(D)", 3, adj = 0, line = 1)
 mtext("Threat Status", side = 2, outer = TRUE)
 dev.off()
 
@@ -265,7 +269,7 @@ Multi_lm_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm +
                   Efrogs$Number_of_eggs_or_offspring + 
                   Efrogs$HabitatBreadth + Efrogs$Altitude_min)
 summary(Multi_lm_e)
-# Multi-Variable Linear Model European Frogs
+# Multi-Variable Linear Model European Salamanders
 Multi_lm_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm + 
                   Esalamanders$Number_of_eggs_or_offspring + 
                   Esalamanders$HabitatBreadth + 
