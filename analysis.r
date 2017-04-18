@@ -213,7 +213,7 @@ abline(lm_svl_s, col = "darkgreen")
 summary(lm_svl_s)
 legend("topright", c("Anura", "Urodela"), pch = c(17,20), 
        col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
-mtext("(A)", 3, adj = 0, line = 0)
+mtext("(A)", 3, adj = 0, line = 1)
 # Clutch Size
 plot(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, xlab = "ln(Mean Clutch Size)", 
      ylab = "", col = "mediumpurple1", main = "Fecundity", pch = 17)
@@ -227,6 +227,7 @@ abline(lm_cs_s, col = "darkgreen")
 summary(lm_cs_s)
 legend(6,5.3, c("Anura", "Urodela"), pch = c(17,20), 
        col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
+mtext("(B)", 3, adj = 0, line = 1)
 # Habitat Breadth
 plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", 
      ylab = "", col = "mediumpurple1", main = "Habitat Specificity", pch = 17)
@@ -240,6 +241,7 @@ abline(lm_hb_s, col = "darkgreen")
 summary(lm_hb_s)
 legend("topright", c("Anura", "Urodela"), pch = c(17,20), 
        col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
+mtext("(C)", 3, adj = 0, line = 1)
 # Minimum Elevation
 plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "", col = "mediumpurple1", 
@@ -254,6 +256,7 @@ abline(lm_me_s, col = "darkgreen")
 summary(lm_me_s)
 legend("right", c("Anura", "Urodela"), pch = c(17,20), 
        col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
+mtext("(D)", 3, adj = 0, line = 1)
 mtext("Threat Status", outer = TRUE, side = 2)
 dev.off()
 
@@ -392,7 +395,7 @@ boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio',
                      'HabitatBreadthratio', "MinElevationratio")]), 
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
                   "Habitat Breadth", "Minimum Elevation (m)"))
-abline(h=1, col = "blue")
+abline(h=0, col = "blue")
 text(x=1, y=4, labels = "P = 0.417")
 text(x=2, y=4, labels = "P = 0.073")
 text(x=3, y=4, labels = "P = 0.023")
