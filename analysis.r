@@ -126,8 +126,6 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 ##### Plots and Linear Models
 
-
-
 ## North American and European Anura Comparison
 pdf('plots/NA_Eur_anura.pdf', height = 8, width = 10)
 par(mfrow=c(2,2), oma = c(0,2,2,0))
@@ -280,7 +278,6 @@ summary(Multi_lm_s)
 
 #### Paired Analysis
 
-
 #preparing the paired dataset
 NApaired$HabitatBreadth1 <- apply(NApaired[,c(24:35)], 1, sum)
 NApaired$HabitatBreadth2 <- apply(NApaired[,c(63:74)], 1, sum)
@@ -379,7 +376,6 @@ NApaired$SVL2 <- ifelse(!is.na(NApaired$SVLunspecified2) & !is.na(NApaired$SVLfe
                                              NApaired$SVLmale2), 
                                       ifelse(is.na(NApaired$SVLmale2), NApaired$SVLfemale2, 
                                              NApaired$SVLMFmean2)), NApaired$SVLunspecified2))
-
 
 ## Wilcoxon Tests
 wilcox.test(NApaired$SVL1, NApaired$SVL2, paired = TRUE)
