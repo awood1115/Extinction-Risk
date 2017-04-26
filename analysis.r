@@ -128,62 +128,56 @@ Esalamanders <- EuroAmphib[EuroAmphib$Order == 'Urodela',]
 
 ## North American and European Anura Comparison
 pdf('plots/NA_Eur_anura.pdf', height = 8, width = 10)
-par(mfrow=c(2,2), oma = c(0,2,2,0))
+par(mfrow=c(2,2), oma = c(0,2,2,0), cex.lab = 1.2, cex.axis = 1.2)
 # SVL
 plot(NAfrogs$SVL, NAfrogs$threat, xlab = "Mean SVL(mm)", ylab = "", 
-     main = "Body Size", col = "darkgreen", pch = 17)
+     main = "Body Size", col = "darkgreen", pch = 17, cex = 1.3)
 lm_svl_na = lm(NAfrogs$threat ~ NAfrogs$SVL)
 abline(lm_svl_na, col = "darkgreen")
 summary(lm_svl_na)
 points(Efrogs$SVL_Unspecified_mm, Efrogs$threat, 
-       col = "mediumpurple1", pch = 20)
+       col = "mediumpurple1", pch = 19, cex = 1.3)
 lm_svl_e = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_e, col = "mediumpurple1")
 summary(lm_svl_e)
-legend("topright", c("North American", "European"), pch = c(17,20), 
-       col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
+legend("topright", c("North American", "European"), pch = c(17,19), 
+       col = c("darkgreen", "mediumpurple1"), cex = 1.3, bty = "n")
 mtext("(A)", 3, adj = 0, line = 1)
 # Clutch Size
 plot(log(NAfrogs$ClutchSize), NAfrogs$threat, xlab = "ln(Mean Clutch Size)", ylab = "", 
-     main = "Fecundity", col = "darkgreen", pch = 17)
+     main = "Fecundity", col = "darkgreen", pch = 17, cex = 1.3)
 lm_cs_na = lm(NAfrogs$threat ~ log(NAfrogs$ClutchSize))
 abline(lm_cs_na, col = "darkgreen")
 summary(lm_cs_na)
 points(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, 
-       col = "mediumpurple1", pch = 20)
+       col = "mediumpurple1", pch = 19, cex = 1.3)
 lm_cs_e = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_e, col = "mediumpurple1")
 summary(lm_cs_e)
-legend("topleft", c("North American", "European"), pch = c(17,20), 
-       col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
 mtext("(B)", 3, adj = 0, line = 1)
 # Habitat Breadth
 plot(NAfrogs$HabitatBreadth, NAfrogs$threat, xlab = "Habitat Breadth", ylab = "", 
-     main = "Habitat Specificity", col = "darkgreen", pch = 17)
+     main = "Habitat Specificity", col = "darkgreen", pch = 17, cex = 1.3)
 lm_hb_na = lm(NAfrogs$threat ~ NAfrogs$HabitatBreadth)
 abline(lm_hb_na, col = "darkgreen")
 summary(lm_hb_na)
 points(Efrogs$HabitatBreadth, Efrogs$threat, 
-       col = "mediumpurple1", pch = 20)
+       col = "mediumpurple1", pch = 19, cex = 1.3)
 lm_hb_e = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_e, col = "mediumpurple1")
 summary(lm_hb_e)
-legend("topright", c("North American", "European"), pch = c(17,20), 
-       col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
 mtext("(C)", 3, adj = 0, line = 1)
 # Minimum Elevation
 plot(NAfrogs$MinElevation_m, NAfrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "", main = "Minimum Elevation", 
-     col = "darkgreen", pch = 17)
+     col = "darkgreen", pch = 17, cex = 1.3)
 lm_me_na = lm(NAfrogs$threat ~ NAfrogs$MinElevation_m)
 abline(lm_me_na, col = "darkgreen")
 summary(lm_me_na)
-points(Efrogs$Altitude_min, Efrogs$threat, col = "mediumpurple1", pch = 20)
+points(Efrogs$Altitude_min, Efrogs$threat, col = "mediumpurple1", pch = 19, cex = 1.3)
 lm_me_e = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_e, col = "mediumpurple1")
 summary(lm_me_e)
-legend("topright", c("North American", "European"), pch = c(17,20), 
-       col = c("darkgreen", "mediumpurple1"), cex = 0.9, bty = "n")
 mtext("(D)", 3, adj = 0, line = 1)
 mtext("Threat Status", side = 2, outer = TRUE)
 dev.off()
@@ -201,63 +195,57 @@ summary(Multi_lm_e)
 
 ## European Anura and Urodela Comparison
 pdf('plots/EurF_EurS.pdf', height = 8, width = 10)
-par(mfrow=c(2,2), oma = c(0,2,2,0))
+par(mfrow=c(2,2), oma = c(0,2,2,0), cex.lab = 1.2, cex.axis = 1.2)
 # SVL
 plot(Efrogs$SVL_Unspecified_mm, Efrogs$threat, xlab = "Mean SVL (mm)", ylab = "", 
-     col = "mediumpurple1", main = "Body Size", pch = 17)
+     col = "mediumpurple1", main = "Body Size", pch = 17, cex = 1.3)
 lm_svl_f = lm(Efrogs$threat ~ Efrogs$SVL_Unspecified_mm)
 abline(lm_svl_f, col = "mediumpurple1")
 summary(lm_svl_f)
 points(Esalamanders$SVL_Unspecified_mm, Esalamanders$threat, 
-       col = "darkgreen", pch = 20)
+       col = "royalblue3", pch = 19, cex = 1.3)
 lm_svl_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm)
-abline(lm_svl_s, col = "darkgreen")
+abline(lm_svl_s, col = "royalblue3")
 summary(lm_svl_s)
-legend("topright", c("Anura", "Urodela"), pch = c(17,20), 
-       col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
+legend("topright", c("Anura", "Urodela"), pch = c(17,19), 
+       col = c("mediumpurple1", "royalblue43"), cex = 1.3, bty = "n")
 mtext("(A)", 3, adj = 0, line = 1)
 # Clutch Size
 plot(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, xlab = "ln(Mean Clutch Size)", 
-     ylab = "", col = "mediumpurple1", main = "Fecundity", pch = 17)
+     ylab = "", col = "mediumpurple1", main = "Fecundity", pch = 17, cex = 1.3)
 lm_cs_f = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_f, col = "mediumpurple1")
 summary(lm_cs_f)
 points(log(Esalamanders$Number_of_eggs_or_offspring), Esalamanders$threat, 
-       col = "darkgreen", pch = 20)
+       col = "darkgreen", pch = 19, cex = 1.3)
 lm_cs_s = lm(Esalamanders$threat ~ log(Esalamanders$Number_of_eggs_or_offspring))
 abline(lm_cs_s, col = "darkgreen")
 summary(lm_cs_s)
-legend(6,5.3, c("Anura", "Urodela"), pch = c(17,20), 
-       col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
 mtext("(B)", 3, adj = 0, line = 1)
 # Habitat Breadth
 plot(Efrogs$HabitatBreadth, Efrogs$threat, xlab = "Habitat Breadth", 
-     ylab = "", col = "mediumpurple1", main = "Habitat Specificity", pch = 17)
+     ylab = "", col = "mediumpurple1", main = "Habitat Specificity", pch = 17, cex = 1.3)
 lm_hb_f = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_f, col = "mediumpurple1")
 summary(lm_hb_f)
 points(Esalamanders$HabitatBreadth, Esalamanders$threat, 
-       col = "darkgreen", pch = 20)
+       col = "darkgreen", pch = 19, cex = 1.3)
 lm_hb_s = lm(Esalamanders$threat ~ Esalamanders$HabitatBreadth)
 abline(lm_hb_s, col = "darkgreen")
 summary(lm_hb_s)
-legend("topright", c("Anura", "Urodela"), pch = c(17,20), 
-       col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
 mtext("(C)", 3, adj = 0, line = 1)
 # Minimum Elevation
 plot(Efrogs$Altitude_min, Efrogs$threat, xlab = "Minimum Elevation (m)", 
      ylab = "", col = "mediumpurple1", 
-     main = "Minimum Elevation", pch = 17)
+     main = "Minimum Elevation", pch = 17, cex = 1.3)
 lm_me_f = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_f, col = "mediumpurple1")
 summary(lm_me_f)
 points(Esalamanders$Altitude_min, Esalamanders$threat, 
-       col = "darkgreen", pch = 20)
+       col = "darkgreen", pch = 19, cex = 1.3)
 lm_me_s = lm(Esalamanders$threat ~ Esalamanders$Altitude_min)
 abline(lm_me_s, col = "darkgreen")
 summary(lm_me_s)
-legend("right", c("Anura", "Urodela"), pch = c(17,20), 
-       col = c("mediumpurple1", "darkgreen"), cex = 0.9, bty = "n")
 mtext("(D)", 3, adj = 0, line = 1)
 mtext("Threat Status", outer = TRUE, side = 2)
 dev.off()
