@@ -208,7 +208,7 @@ lm_svl_s = lm(Esalamanders$threat ~ Esalamanders$SVL_Unspecified_mm)
 abline(lm_svl_s, col = "royalblue3")
 summary(lm_svl_s)
 legend("topright", c("Anura", "Urodela"), pch = c(17,19), 
-       col = c("mediumpurple1", "royalblue43"), cex = 1.3, bty = "n")
+       col = c("mediumpurple1", "royalblue3"), cex = 1.3, bty = "n")
 mtext("(A)", 3, adj = 0, line = 1)
 # Clutch Size
 plot(log(Efrogs$Number_of_eggs_or_offspring), Efrogs$threat, xlab = "ln(Mean Clutch Size)", 
@@ -217,9 +217,9 @@ lm_cs_f = lm(Efrogs$threat ~ log(Efrogs$Number_of_eggs_or_offspring))
 abline(lm_cs_f, col = "mediumpurple1")
 summary(lm_cs_f)
 points(log(Esalamanders$Number_of_eggs_or_offspring), Esalamanders$threat, 
-       col = "darkgreen", pch = 19, cex = 1.3)
+       col = "royalblue3", pch = 19, cex = 1.3)
 lm_cs_s = lm(Esalamanders$threat ~ log(Esalamanders$Number_of_eggs_or_offspring))
-abline(lm_cs_s, col = "darkgreen")
+abline(lm_cs_s, col = "royalblue3")
 summary(lm_cs_s)
 mtext("(B)", 3, adj = 0, line = 1)
 # Habitat Breadth
@@ -229,9 +229,9 @@ lm_hb_f = lm(Efrogs$threat ~ Efrogs$HabitatBreadth)
 abline(lm_hb_f, col = "mediumpurple1")
 summary(lm_hb_f)
 points(Esalamanders$HabitatBreadth, Esalamanders$threat, 
-       col = "darkgreen", pch = 19, cex = 1.3)
+       col = "royalblue3", pch = 19, cex = 1.3)
 lm_hb_s = lm(Esalamanders$threat ~ Esalamanders$HabitatBreadth)
-abline(lm_hb_s, col = "darkgreen")
+abline(lm_hb_s, col = "royalblue3")
 summary(lm_hb_s)
 mtext("(C)", 3, adj = 0, line = 1)
 # Minimum Elevation
@@ -242,9 +242,9 @@ lm_me_f = lm(Efrogs$threat ~ Efrogs$Altitude_min)
 abline(lm_me_f, col = "mediumpurple1")
 summary(lm_me_f)
 points(Esalamanders$Altitude_min, Esalamanders$threat, 
-       col = "darkgreen", pch = 19, cex = 1.3)
+       col = "royalblue3", pch = 19, cex = 1.3)
 lm_me_s = lm(Esalamanders$threat ~ Esalamanders$Altitude_min)
-abline(lm_me_s, col = "darkgreen")
+abline(lm_me_s, col = "royalblue3")
 summary(lm_me_s)
 mtext("(D)", 3, adj = 0, line = 1)
 mtext("Threat Status", outer = TRUE, side = 2)
@@ -379,13 +379,15 @@ NApaired$MinElevationratio = (NApaired$MinElevation_m1 + 1) / (NApaired$MinEleva
 
 ## Paired Ratio Boxplots
 pdf('plots/pairedratio.pdf', height = 8, width = 10)
+par(cex.lab = 1.3, cex.axis = 1.2)
 boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio', 
                      'HabitatBreadthratio', "MinElevationratio")]), 
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
-                  "Habitat Breadth", "Minimum Elevation (m)"))
-abline(h=0, col = "blue")
-text(x=1, y=4, labels = "P = 0.417")
-text(x=2, y=4, labels = "P = 0.073")
-text(x=3, y=4, labels = "P = 0.023")
-text(x=4, y=4, labels = "P = 0.018")
+                  "Habitat Breadth", "Minimum Elevation (m)"), 
+        ylab = "Log( non-threatened / threatened )")
+abline(h=0, col = "blue", cex = 1.2)
+text(x=1, y=4, labels = "P = 0.417", cex = 1.3)
+text(x=2, y=4, labels = "P = 0.073", cex = 1.3)
+text(x=3, y=4, labels = "P = 0.023", cex = 1.3)
+text(x=4, y=4, labels = "P = 0.018", cex = 1.3)
 dev.off()
