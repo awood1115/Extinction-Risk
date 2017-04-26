@@ -379,7 +379,7 @@ NApaired$MinElevationratio = (NApaired$MinElevation_m1 + 1) / (NApaired$MinEleva
 
 ## Paired Ratio Boxplots
 pdf('plots/pairedratio.pdf', height = 8, width = 10)
-par(cex.lab = 1.3, cex.axis = 1.2)
+par(oma = c(0,1,0,0), cex.lab = 1.3, cex.axis = 1.2)
 boxplot(log(NApaired[, c('SVLratio', 'ClutchSizeratio', 
                      'HabitatBreadthratio', "MinElevationratio")]), 
         names = c("Mean SVL (mm)", "Mean Clutch Size", 
