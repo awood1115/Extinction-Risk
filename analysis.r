@@ -1,11 +1,11 @@
 # ENEC 395 Undergraduate Research 
 # Alicia Wood
-# 3/20/17
+# 4/28/17
 # Correlates of Extinction Risk in European and North American Amphibians
 
 
 
-### Setting my working directory to the folder where all of my data and code are stored
+### Setting the working directory 
 
 setwd('~/Desktop/Extinction-Risk')
 
